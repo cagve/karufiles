@@ -1,6 +1,6 @@
 #/bin/sh
-declare -a files=("$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
-msg=$(date +'%d %B - %H:%m')
+declare -a files=("$HOME/.tmux.conf" "$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
+msg=$(date +'%d %B - %H:%M')
 '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 for i in "${files[@]}"
