@@ -1,0 +1,653 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal 
+
+# MATH
+snippet im "Inline math" 
+$$1$ $2
+endsnippet
+
+snippet imm "Visual inline math" 
+$${VISUAL}$ $1
+endsnippet
+
+snippet dm "Display math" b
+\[
+$1
+\]
+$2
+endsnippet 
+
+snippet dmm "Visual display math" b
+\[
+${VISUAL}
+\]
+endsnippet 
+
+snippet eq "Equation" b
+\begin{equation}
+$1
+\end{equation}
+endsnippet
+
+priority 100
+context "math()"
+snippet '([a-zA-Z])cc' "Mathcal escrito" wrA
+\mathcal{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet '{}' "Mathcal escrito" wr
+\left\\{ $1 \right\\} $2
+endsnippet
+
+priority 100
+context "math()"
+snippet '([a-zA-Z])bb' "Mathcal escrito" riA
+\mathbb{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet '([a-zA-Z])ff' "Mathcal escrito" riA
+\mathfrak{`!p snip.rv=match.group(1)`}
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])(\d)' "Subíndice automático" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "Subíndice mas de 2 automático" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet '<<' "langle" wrA
+\langle 
+endsnippet
+
+context "math()"
+snippet '<>' "langle" wrA
+\langle $1 \rangle $2
+endsnippet
+
+# snippet '>>' "angel visual" 
+# \langle ${VISUAL} \rangle $2
+# endsnippet
+
+context "math()"
+snippet '>>' "rangle" wrA
+\rangle 
+endsnippet
+
+
+# Entorno prooftree
+snippet prooftree "Entorno prooftree" b
+\begin{center}
+	\begin{prooftree}
+		{to prove = $1}
+		$2
+	\end{prooftree}
+\end{center}
+endsnippet
+
+# conjuncion
+snippet rvc "Veracidad conjunción" 
+just={V$\land$, $2} $3
+endsnippet
+snippet rfc "Falsedad conjunción" 
+just={F$\land$, $2} $3
+endsnippet
+
+# Disyuccion
+snippet rvd "Veracidad Disyucción" 
+just={V$\lor$, $2} $3
+endsnippet
+snippet rfd "Falsedad disyucción" 
+just={F$\lor$, $2} $3
+endsnippet
+
+# Implicacion
+snippet rvi "Veracidad implicación" 
+just={V$\supset, $2} $ $3
+endsnippet
+snippet rfi "Falsedad implicación" 
+just={F$\supset$, $2} $3
+endsnippet
+
+# Negacion
+snippet rvn "Veracidad negación" 
+just={V$\lnot$, $2} $3
+endsnippet
+snippet rfn "Falsedad negación" 
+just={F$\lnot$, $2} $3
+endsnippet
+
+# Square
+snippet rvs "Veracidad square" 
+just={V$\square$, $2} $3
+endsnippet
+snippet rfs "Falsedad square" 
+just={F$\square$, $2} $3
+endsnippet
+
+# Lozenge
+snippet rvl "Veracidad lozenge" 
+just={V$\lozenge$, $2} $3
+endsnippet
+snippet rfl "Falsedad lozenge" 
+just={F$\lozenge$, $2} $3
+endsnippet
+
+# Operadores epistémicos
+context "math()"
+snippet '(K)([a-z])' "Operador epistémico" wr
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+# Definición de conceptos muy habituales
+context "math()"
+snippet modelokripke "Modelo kripke" w
+M = \langle W, \\{ \mathfrak{R}_{a: a \in \mathcal{A}}\\}, v \rangle
+endsnippet
+
+
+
+# Operadores
+
+
+context "math()"
+snippet sii "Texto iff" wA
+\text{ sii }$1
+endsnippet
+
+context "math()"
+snippet talque "Texto tal que" wA
+\text{ tal que }$1
+endsnippet
+
+context "math()"
+snippet |= "vDash" wA
+\vDash
+endsnippet
+
+
+#############################
+#		GENERAL				#
+#############################
+
+
+snippet lmot "comillas" 
+\guillemotleft $1\guillemotright $2
+endsnippet
+
+snippet beamer "beamer"
+\documentclass[a4paper]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[round, sort]{natbib}
+
+\usetheme{Berlin} % tema de presentación
+% \usecolortheme{rose} % tema de color
+% \usefonttheme{serif} % tema de fuente
+% \useinnertheme{circles} % tema interior
+% \useoutertheme{split} % tema exterior
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+\end{document}
+endsnippet
+
+#############################
+#		BIBLIOGRAFÍA		#
+#############################
+snippet cit "cite" 
+\cite{$0}
+endsnippet
+
+snippet citp "citep" 
+\citep{$0}
+endsnippet
+
+
+#############################
+#		SECCIONES			#
+############################# 
+snippet sec "section" b
+\section{$0}
+
+endsnippet
+
+snippet sec* "section*" b
+\section*{$1}
+$0
+endsnippet
+
+snippet sub "subsection" b
+\subsection{$1}
+$0
+endsnippet
+
+snippet sub* "section*" b
+\subsection*{$1}
+$0
+endsnippet
+
+snippet ssub "subsubsection" b
+\subsubsection{$1}
+$0
+endsnippet
+
+snippet ssub* "subsubsection" b
+\subsubsection*{$1}
+$0
+endsnippet
+
+snippet par "par" b
+\paragraph{$1}
+$0
+endsnippet
+
+snippet  '' "Comillas visual"
+\`\`${VISUAL}''
+endsnippet
+
+snippet  " "Comillas" wA
+\`\`$1'' $2
+endsnippet
+
+global !p
+def create_line_plhldr(snip):
+	placeholders_amount = int(snip.buffer[snip.line].strip())
+
+	snip.buffer[snip.line] = ''
+
+	anon_snippet_body='\\begin{itemize} \n'
+	for i in range(1, int(placeholders_amount)+1):
+		anon_snippet_body +='\t \item $' + str(i+1) + '\n'
+	anon_snippet_body+='\end{itemize}'
+	snip.expand_anon(anon_snippet_body)
+endglobal 
+post_jump "create_line_plhldr(snip)"
+snippet "(itemize)(\d+)?" "Itemize enviorment" br
+	`!p snip.rv = 0 if match.group(2) is None else match.group(2)`
+endsnippet
+
+
+
+#############################
+#		FORMATO DE TEXTO	#
+############################# 
+
+snippet red "Red surround"
+{\color{red}${VISUAL}}
+endsnippet
+
+snippet bf "bold" 
+\textbf{$1} $2
+endsnippet
+
+snippet bff "bold surround" 
+\textbf{${VISUAL}}
+endsnippet
+
+snippet ita "italica" 
+\textit{$1} $2
+endsnippet
+
+snippet itaa "bold surround" 
+\textit{${VISUAL}}
+endsnippet
+
+snippet under "underline" 
+\underline{$1} $2
+endsnippet
+
+snippet sal "salto//newcommand" 
+\salto
+$1
+endsnippet
+
+
+#############################
+#		ENVIROMENT			#
+#############################
+snippet enu "Enumerate" b
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+endsnippet
+
+snippet ite "Itemize" b
+\begin{itemize}
+	\item $1
+\end{itemize}
+endsnippet
+
+snippet lstlisting "listing" b
+\begin{lstlisting}[caption={$1},captionpos=b]
+$0
+\end{lstlisting}
+endsnippet
+
+snippet lstlisting* "listing*" b
+\begin{lstlisting}
+$0
+\end{lstlisting}
+endsnippet
+
+snippet beg "begin{}" b 
+\begin{$1}
+$2
+\end{$1}
+endsnippet
+
+snippet tikzfigure "Tikz figure" b
+\begin{figure}[ht!]
+	\begin{center}
+		\begin{tcolorbox}[colback=white]
+			\begin{tikzpicture}
+				$2 
+			\end{tikzpicture} 
+		\end{tcolorbox} 
+	\end{center}  
+	\caption{$1}
+\end{figure}
+
+endsnippet
+
+snippet image "Image" b
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[$1]{$2}
+	\end{center}
+	\caption{$3}
+\end{figure} 
+$4
+endsnippet
+
+
+snippet svg "Description" b
+\begin{figure}[ht]
+	\begin{center}
+    \incfig{$1}
+	\end{center}
+    \caption{$2}
+    \label{fig:$1}
+\end{figure}
+endsnippet
+
+snippet image* "Image" b
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[$1]{$2}
+	\end{center}
+\end{figure} 
+$4
+endsnippet
+
+snippet tikz "tikz" b
+\begin{figure}
+\begin{tcolorbox}[colback=white]
+\begin{center}
+\begin{tikzpicture}[modal,world/.append style = {minimum size=1.5cm}]
+
+	$2
+	
+\end{tikzpicture} 
+\end{center}
+\end{tcolorbox}
+\caption{$1}
+\end{figure}
+endsnippet
+
+
+#############################
+#		FUNCIONES			#
+#############################
+global !p
+def complete(t, opts):
+   if t:
+      opts = [ m[len(t):] for m in opts if m.startswith(t) ]
+   if len(opts) == 1:
+      return opts[0]
+   return "(" + '|'.join(opts) + ')'
+endglobal
+
+
+global !p
+def diapositiva():
+	import re
+	buffer = vim.current.buffer
+	currentLine = vim.current.window.cursor[0]
+	text=""
+	counter=0
+	i=0
+	while i<currentLine:
+		text = buffer[i]
+		x = re.search("%Diapositiva",text)
+		if x:
+			counter += 1
+		i+=1
+
+	strFinal = "%Diapositiva " + str(counter)
+	return strFinal
+endglobal
+
+#############################
+#		ALGORITMOS			#
+#############################
+
+# snippet algo "Algoritmo" b
+# \begin{algorithm}
+# \caption{$1}
+# \begin{algorithmic}
+
+# 	$2
+
+# \end{algorithmic}
+# \end{algorithm}
+# endsnippet
+
+# snippet state "State" b
+# \State ${1:<text>}
+# $2
+# endsnippet
+
+# snippet if "if" 
+# \If{$1} 
+# 	$2
+# \EndIF
+# endsnippet
+
+# snippet elseif "elseif" 
+# \ElseIf{$1} 
+# 	$2
+# \EndIf
+# endsnippet
+
+# snippet for "for"
+# \For{$1} 
+# 	$2
+# \EndFor
+# endsnippet
+
+# snippet while "while" 
+# \While{$1}
+# 	$2
+# \EndWhile
+# endsnippet
+
+
+# snippet input "input" 
+# \Require $1
+# endsnippet
+
+# snippet return "return"
+# \Return $1
+# endsnippet
+
+# snippet and "and"
+# \textbf{and}
+# endsnippet
+# snippet not "not"
+# \textbf{not}
+# endsnippet
+
+# snippet or "or"
+# \textbf{or}
+# endsnippet
+
+# snippet true "true"
+# \textbf{true}
+# endsnippet
+
+# snippet false "false"
+# \texbf{false}
+# endsnippet
+
+# snippet switch "switch"
+# \Switch{$1} 
+# 	$2
+# \EndSwitch
+# endsnippet
+
+# snippet case "case" 
+# \Case{$1} 
+# 	$2
+# \EndCase
+# endsnippet
+
+# snippet else "else"
+# \Else $1
+# endsnippet
+
+
+#############################
+#		  BEAMER  			#
+#############################
+
+snippet ff "frame" b
+\begin{frame} \frametitle{$1}
+\end{frame}
+endsnippet
+
+
+snippet bb "Block" b
+\begin{block}{$1}
+\end{block} 
+endsnippet
+
+#############################
+#		PLANTILLAS			#
+#############################
+snippet logictemplate "Basic template" b
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[round, sort]{natbib}
+\usepackage{fitch}
+\usepackage{hyperref}
+\usepackage{times}
+\usepackage[margin=1.3in]{geometry}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+
+%tikz
+\usetikzlibrary{positioning, arrows, calc, shapes, babel}
+\tikzset{
+modal/.style={>=stealth',shorten >=1pt,shorten <=1pt,auto,node distance=1.5cm,
+semithick},
+world/.style={circle,draw,minimum size=0.5cm,fill=gray!15},
+point/.style={circle,draw,inner sep=0.5mm,fill=black},
+reflexive above/.style={->,loop,looseness=7,in=120,out=60},
+reflexive below/.style={->,loop,looseness=7,in=240,out=300},
+reflexive left/.style={->,loop,looseness=7,in=150,out=210},
+reflexive right/.style={->,loop,looseness=7,in=30,out=330}
+}
+
+%Comandos
+\newcommand{\salto}{\par \medskip}
+
+%Titulo
+\title{}
+\author{}
+\date
+
+\begin{document}
+\maketitle \newpage
+$1
+\end{document}
+endsnippet
+
+snippet normaltemplate "Basic template" 
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage[round, sort]{natbib}
+
+%Comandos
+\newcommand{\salto}{\par \medskip}
+
+%Titulo
+\title{}
+\author{}
+\date
+
+\begin{document}
+\maketitle \newpage
+$1
+\end{document}
+endsnippet
+
+##############################
+##	     GRAFOS				#
+##############################
+#snippet '(n)(\d+)' "nodo" wr
+#`!p 
+#snip.rv = '\\node[world](w' + match.group(2) +')'` [label=$1`!p
+#snip.rv=complete(t[1],['above','below', 'left', 'right'])`:`!p
+#snip.rv='$w_'+match.group(2)+'$'`,${2:<--position-->}] {$${3:<--atoms-->}$};
+#$4
+#endsnippet
+
+#snippet '(\d+)(r)(\d+)' "relación siempre multiagente" br 
+#\\path[$1`!p snip.rv=complete(t[1], ['->','<->'])`] `!p snip.rv = '(w'+match.group(1)+')'` edge node[$2`!p snip.rv=complete(t[2], ['above', 'below', 'left', 'right'])`=0.1cm] {$${3:Agentes}$} `!p snip.rv = '(w'+match.group(3)+')'`;
+#$4
+#endsnippet
+
+#snippet '(\d+)(R)' "relación siempre multiagente" br 
+#\\path[->] `!p snip.rv = '(w'+match.group(1)+')'` edge[reflexive $1`!p snip.rv=complete(t[1],['above', 'below', 'left', 'right'])`]  node[$2`!p snip.rv=complete(t[2], ['above', 'below', 'left','right'])`=0.1cm] {$${3:Agentes}$} `!p snip.rv = '(w'+match.group(1)+')'`;
+#$4
+#endsnippet
+
+#snippet '(k)([a-z])' "K" r
+#K_`!p snip.rv = match.group(2)`
+#endsnippet
+
+#snippet '(K)([a-z])' "^K" r
+#\hat{K}_`!p snip.rv = match.group(2)`
+#endsnippet
+

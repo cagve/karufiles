@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Activa o desacativa el mute
+pactl set-sink-mute 0 toggle 
+#Actualiza el bloque
+pkill -RTMIN+10 dwmblocks

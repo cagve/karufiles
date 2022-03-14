@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Volumen scripts
+
+gethelp(){
+cat <<EOF
+-u,	Subir volumen
+-d,	Bajar volumen
+-m, 	Mutear/Desmutear
+-i, 	Info
+EOF
+}
+
+volumeup(){
+	[ $(pamixer --get-mute) = true ]&&
+		pactl set-sink-mute 0 toggle 
+	pactl set-sink-volume 0 +5%
+	pkill -RTMIN+10 dwmblocks
+}
+
+volumedown(){
+	[ $(pamixer --get-mute) = true ]&&
+		pactl set-sink-mute 0 toggle 
+	pactl set-sink-volume 0 -5%
+	pkill -RTMIN+10 dwmblocks
+}
+
+volumemute(){
+	pactl set-sink-mute 0 toggle 
+	pkill -RTMIN+10 dwmblocks
+}
+
+volumeinfo(){
+	vol="$(pamixer --get-volume)"
+	if [ $(pamixer --get-mute) = true ]; then
+	    icon="ﱝ"
+	    vol=""
+	else
+		icon=""
+	fi
+	echo "$icon  $vol"
+}
+
+if [ $# -eq 0 ]; then
+    gethelp # run usage function
+    exit 1
+fi
+
+case $1 in
+	"-u") 
+		volumeup
+		;;
+	"-d") 
+		volumedown
+		;;
+	"-m") 
+		volumemute
+		;;
+	"-i") 
+		volumeinfo
+		;;
+	"*")
+		gethelp
+		;;
+esac

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+monitor=$(xrandr | grep -sw 'DP-1')
+
+if [[ $monitor != '' ]]; then # Si no está conectado el monitor DP1
+	echo "Desktop mode"
+	xrandr --newmode "1280x1024_60.00"  108.88  1280 1360 1496 1712  1024 1025 1028 1060  -HSync +Vsync
+	xrandr --addmode "DP-1" 1280x1024_60.00
+	xrandr --output "DP-1" --mode 1280x1024_60.00
+	exec ~/.screenlayout/desktop_mode.sh &
+	# feh --bg-fill /home/carlos/Pictures/wallpapers/1280x1024.jpg &
+else
+	echo "Laptop mode"
+	exec ~/.screenlayout/laptop_mode.sh &
+	# feh --bg-fill /home/carlos/Pictures/wallpapers/ireland.jpg &
+fi
+

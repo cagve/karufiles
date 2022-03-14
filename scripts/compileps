@@ -1,0 +1,8 @@
+#!/bin/sh
+FILENAME=$(basename $1 .tex)
+latex $FILENAME.tex
+dvips $FILENAME.dvi
+ps2pdf -dALLOWPSTRANSPARENCY $FILENAME.ps
+
+rm *.dvi *.ps
+
