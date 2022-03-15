@@ -1,5 +1,6 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
+		use 'preservim/tagbar'
 		use 'SirVer/ultisnips'
 		use 'ThePrimeagen/harpoon'
 		use 'godlygeek/tabular'                                    
