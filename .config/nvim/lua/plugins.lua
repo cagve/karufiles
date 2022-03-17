@@ -1,6 +1,7 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
 		use 'preservim/tagbar'
+		use 'mzlogin/vim-markdown-toc'
 		use 'SirVer/ultisnips'
 		use 'ThePrimeagen/harpoon'
 		use 'godlygeek/tabular'                                    
@@ -10,7 +11,6 @@ return require('packer').startup(function()
 		use 'hrsh7th/cmp-path'
 		use 'hrsh7th/nvim-cmp'
 		use 'junegunn/goyo.vim'
-		use 'kyazdani42/nvim-tree.lua'	
 		use 'kyazdani42/nvim-web-devicons'
 		use 'lervag/vimtex'                                        
 		use 'mbbill/undotree'
