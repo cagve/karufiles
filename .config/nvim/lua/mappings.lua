@@ -7,6 +7,8 @@ keymap('n','<leader>y', '"+y', opts)
 keymap('v','<leader>y', '"+y', opts)
 keymap('n','<A-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
 keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
+keymap('n','<leader>s', ':e ~/vimwiki/Scratch.md<CR>', opts)
+keymap('n','<leader>t', ':e ~/vimwiki/To-do.md<CR>', opts)
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})

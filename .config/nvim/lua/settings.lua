@@ -21,3 +21,4 @@ set.incsearch=true
 set.scrolloff=8
 set.hidden=true 
 vim.cmd("colorscheme gruvbox")
+vim.cmd("set rtp+=/home/karu/texbox")
