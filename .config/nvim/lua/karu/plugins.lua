@@ -2,7 +2,6 @@
 return require('packer').startup(function()
 		use 'preservim/tagbar'
 		use 'mzlogin/vim-markdown-toc'
-		use 'SirVer/ultisnips'
 		use 'ThePrimeagen/harpoon'
 		use 'godlygeek/tabular'                                    
 		use 'hrsh7th/cmp-buffer'
@@ -22,8 +21,9 @@ return require('packer').startup(function()
 		use 'nvim-telescope/telescope.nvim'
 		use 'nvim-treesitter/nvim-treesitter'
 		use 'nvim-treesitter/playground'
-		use 'quangnguyen30192/cmp-nvim-ultisnips'
 		use 'sbdchd/neoformat'
+		use 'L3MON4D3/LuaSnip'
+		use 'saadparwaiz1/cmp_luasnip'
 		use 'tpope/vim-commentary'                                
 		use 'tpope/vim-fugitive'                                   
 		use 'tpope/vim-surround'                                 

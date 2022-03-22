@@ -47,3 +47,8 @@ keymap('n', '<C-t>', ":TagbarToggle<CR>", {})
 keymap('n', '<leader>gg', ":Git<CR>", {})
 keymap('n', '<leader>gc', ":Git commit<CR>", {})
 
+-- LUA SNIP
+keymap("i", "<c-j>", "<cmd>lua require'karu.utils'.luasnip_prev_jump()<CR>", { noremap = true, silent = true })
+keymap("s", "<c-j>", "<cmd>lua require'karu.utils'.luasnip_prev_jump()<CR>", { noremap = true, silent = true })
+keymap("i", "<c-k>", "<cmd>lua require'karu.utils'.luasnip_expands()<CR>", { noremap = true, silent = true })
+keymap("s", "<c-k>", "<cmd>lua require'karu.utils'.luasnip_expands()<CR>", { noremap = true, silent = true })

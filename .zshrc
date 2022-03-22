@@ -20,3 +20,4 @@ autoload -U colors && colors	# Cargar colores
 PROMPT=' %B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$ %b'
 RPROMPT='${vcs_info_msg_0_}'
 
+

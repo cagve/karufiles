@@ -1,4 +1,3 @@
-local keymap = vim.api.nvim_set_keymap
 local ls = require"luasnip"
 local s = ls.snippet
 -- local sn = ls.snippet_node
@@ -19,13 +18,22 @@ ls.config.set_config{
 	enable_autosnippets = true
 }
 
-
 ls.snippets = {
 	all = {
-		s("ternary", {
-			-- equivalent to "${1:cond} ? ${2:then} : ${3:else}"
-			i(1, "cond"), t(" ? "), i(2, "then"), t(" : "), i(3, "else")
-		})
+	},
+	latex = {
+		s("bf", {t("\\textbf{"),i(1, "texto en negrita"),t("}")}),
+		s("it", {t("\\textit{"),i(1, "texto en negrita"),t("}")}),
+		s("im", {t("$"),i(1, "texto en negrita"),t("$")}),
+		s("dm", {t("\\[ \n"),i(1, "texto en negrita"),t("\\]")})
+	},
+	vimwiki = {
+		s("bf", {t("**"),i(1, "text"),t("**")}),
+		s("it", {t("*"),i(1, "text"),t("*")}),
+	},
+	markdown = {
+		s("bf", {t("**"),i(1, "text"),t("**")}),
+		s("it", {t("*"),i(1, "text"),t("*")}),
 	}
 }
 
