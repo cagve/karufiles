@@ -9,6 +9,9 @@ keymap('n','<A-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
 keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
 keymap('n','<leader>s', ':e ~/vimwiki/Scratch.md<CR>', opts)
 keymap('n','<leader>t', ':e ~/vimwiki/To-do.md<CR>', opts)
+keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
+keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
+
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})
@@ -52,3 +55,5 @@ keymap("i", "<c-j>", "<cmd>lua require'karu.utils'.luasnip_prev_jump()<CR>", { n
 keymap("s", "<c-j>", "<cmd>lua require'karu.utils'.luasnip_prev_jump()<CR>", { noremap = true, silent = true })
 keymap("i", "<c-k>", "<cmd>lua require'karu.utils'.luasnip_expands()<CR>", { noremap = true, silent = true })
 keymap("s", "<c-k>", "<cmd>lua require'karu.utils'.luasnip_expands()<CR>", { noremap = true, silent = true })
+keymap("i", "<c-l>", "<cmd>lua require'karu.utils'.luasnip_change()<CR>", { noremap = true, silent = true })
+keymap("n", "<c-l>", "<cmd>lua require'karu.utils'.luasnip_change()<CR>", { noremap = true, silent = true })

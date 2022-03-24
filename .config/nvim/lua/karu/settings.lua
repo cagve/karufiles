@@ -1,4 +1,5 @@
 local set = vim.opt
+local api = vim.api
 
 vim.g.mapleader=" "
 set.title=true
@@ -21,5 +22,6 @@ set.incsearch=true
 set.scrolloff=8
 set.hidden=true 
 
+api.nvim_set_var("latex_template","/home/karu/Documents/LaTeX/templates")
 vim.cmd("colorscheme gruvbox")
 vim.cmd("set rtp+=/home/karu/texbox")

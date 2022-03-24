@@ -12,5 +12,6 @@ require('karu.plugins.telescope')		-- lua/karu/plugins/telescope.lua
 require('karu.plugins.treesitter')		-- lua/karu/plugins/treesitter.lua
 require('karu.plugins.luasnips')		-- lua/karu/plugins/luasnips.lua
 require('karu.plugins.vimwiki')			-- lua/karu/plugins/vimwiki.lua
+require('karu.plugins.autopairs')			-- lua/karu/plugins/vimwiki.lua
 
 

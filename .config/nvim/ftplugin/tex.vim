@@ -1,5 +1,4 @@
 inoremap <C-u> <c-g>u<Esc>[s1z=`]a<c-g>u 
-inoremap <C-l> <Esc>A
 
 set spell
 set spelllang=es
