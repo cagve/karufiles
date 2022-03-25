@@ -15,44 +15,10 @@ ls.config.set_config({
 	enable_autosnippets = true,
 })
 
-local rec_ls
-rec_ls = function()
-	return sn(nil, {
-		c(1, {
-			t({ "" }),
-			sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
-		}),
-	})
-end
-
-local function dyn_tab(pos)
-	return d(pos, function (args)
-		local j = 1
-		local nodes = {}
-		local str = args[1][1]:gsub("%s+", "")
-		local size = string.len(str)
-		while (j<=size) do
-			if j == 1 then
-				table.insert(nodes, i(j))
-			else
-				table.insert(nodes, t(" & "))
-				table.insert(nodes, i(j))
-			end
-			j=j+1
-		end
-		return sn(nil,nodes)
-	end,{1})
-end
 
 ls.snippets = {
 	all = {
-		s("tab",
-			fmt( [[ 
-			\begin{{tabular}}[{}]
-				{}
-			\end{{tabular}} ]],{
-				i(1),
-				dyn_tab(2)}))
+
 	},
 	vimwiki = {
 		s("bf", { t("**"), i(1, "text"), t("**") }),
@@ -69,3 +35,4 @@ ls.snippets = {
 }
 
 require("karu.plugins.tex_luasnips")
+

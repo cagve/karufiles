@@ -19,7 +19,32 @@ rec_ls = function()
 	});
 end
 
+local table_nodes
+table_nodes = function (args)
+	local j = 1
+	local nodes = {}
+	local str = args[1][1]:gsub("%s+", "")
+	local size = string.len(str)
+	while (j<=size) do
+		if j == 1 then
+			table.insert(nodes, i(j))
+		else
+			table.insert(nodes, t({" & "}))
+			table.insert(nodes, i(j))
+		end
+		j=j+1
+	end
+	return sn(nil, nodes)
+end
+
 local snippets = {
+	s("tab", fmt( [[ 
+		\begin{{tabular}}[{}]
+			{}
+		\end{{tabular}} ]],{
+		i(1),
+		d(2,table_nodes,{1})}
+	)),
 	s("en", {
 		t({"\\begin{enumerate}",
 		"\t\\item "}), i(1), d(2, rec_ls, {}),
