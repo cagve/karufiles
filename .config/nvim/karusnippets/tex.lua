@@ -91,4 +91,4 @@ local snippets = {
 	)
 }
 
-ls.add_snippets("tex", snippets)
+return snippets
