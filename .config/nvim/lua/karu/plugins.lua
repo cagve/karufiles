@@ -1,6 +1,7 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
 		use 'preservim/tagbar'
+		use 'vim-scripts/SyntaxAttr.vim'
 		use 'mzlogin/vim-markdown-toc'
 		use 'ThePrimeagen/harpoon'
 		use 'godlygeek/tabular'                                    
