@@ -8,7 +8,7 @@ do
 	/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add "$i"
 done
 /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -m "$msg"
-/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push -f
 
 
 
