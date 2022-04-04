@@ -6,9 +6,10 @@ export VISUAL=nvim
 export EDITOR=nvim
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
-export PATH="$PATH:~/.local/bin/"
-export PATH="$PATH:~/scripts"
-export PATH="$PATH:$GEM_HOME/bin"
+export PATH=~/.local/bin/:$PATH
+export PATH=~/.cargo/bin/:$PATH
+export PATH=~/scripts:$PATH
+export PATH=$GEM_HOME/bin:$PATH
 
 alias ls='ls --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

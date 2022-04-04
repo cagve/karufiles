@@ -10,7 +10,5 @@ local c = ls.choice_node
 local d = ls.dynamic_node
 
 return {
- }
-
-
-
+	s("pr", {t('println!("{}"),'),i(1),t");"})
+}

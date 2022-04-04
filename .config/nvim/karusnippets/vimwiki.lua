@@ -10,7 +10,11 @@ local c = ls.choice_node
 local d = ls.dynamic_node
 
 return {
- }
-
-
-
+     s("ll", 
+		 fmt("{}-{}",{
+			 i(1),
+			 f(function(args, snip, _) return args[1][1]:lower():gsub(" ","_") end,
+			 {1},
+			 {})
+	 }))
+}
