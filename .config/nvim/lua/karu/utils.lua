@@ -1,30 +1,27 @@
+local M = {}
 local ls = require"luasnip"
 local api = vim.api
 
-local function send_tmux_command()
-	local command = vim.fn.input("¿Qué comando quieres enviar a tmux? > ")
-	vim.api.nvim_buf_set_keymap(0, 'n', '<leader>p', ':!tmux send-keys -t 2 '..command..' enter<cr>', {silent = true})
-end
 
-local function luasnip_expands()
+M.luasnip_expands = function ()
 	if ls.expand_or_jumpable() then
 		ls.expand_or_jump()
 	end
 end
 
-local function luasnip_prev_jump()
+M.luasnip_prev_jump = function ()
 	if ls.jumpable(-1) then
 		ls.jump(-1)
 	end
 end
 
-local function luasnip_change()
+M.luasnip_change = function ()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	end
 end
 
-local function get_latex_templates()
+M.get_latex_templates = function ()
 	local directory = api.nvim_get_var("latex_template")
 	local i, files, popen = 0, {}, io.popen
     local pfile = popen('ls "'..directory..'"')
@@ -48,10 +45,4 @@ local function get_latex_templates()
 	return contents
 end
 
-return {
-	send_tmux_command = send_tmux_command,
-	luasnip_expands = luasnip_expands,
-	luasnip_prev_jump = luasnip_prev_jump,
-	luasnip_change = luasnip_change,
-	get_latex_templates = get_latex_templates
-}
+return M

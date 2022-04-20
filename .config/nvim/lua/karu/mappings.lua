@@ -32,8 +32,11 @@ keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>",
 keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {})
 keymap('n', '<leader>gb', "<cmd>lua require('telescope.builtin').git_branches()<cr>", {})
 keymap('n', '<leader>fr', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {})
+keymap('n', '<leader>co', "<cmd>lua require('telescope.builtin').quickfix()<cr>", {})
 
 -- Lsp server
+keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 keymap('n', '<leader>rn', "<cmd>lua vim.lsp.buf.rename()<cr>", {})
 keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<cr>", {})
 keymap('n', '<leader>e', "<cmd>lua vim.diagnostic.open_float()<cr>", {})

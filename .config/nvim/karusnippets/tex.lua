@@ -58,13 +58,19 @@ local snippets = {
 		"\t\\item "}), i(1), d(2, rec_ls, {}),
 		t({"", "\\end{itemize}"}), i(0)
 	}),
-	s("mm", c(1,{t"hola", t"adios"})),
+	s("tt", {
+		t("\\text{ \\texttt{"),
+		i(1),
+		t("}} "),
+		i(2)
+	}),
 	s("im", fmt("${}$ {}", { i(1), i(2) })),
 	s("bf", fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
 	s("it", fmt("\\textit{{{}}} {}", { i(1), i(2) })),
 	s("dm", fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
 	s("par", fmt("\\paragraph{{{}}} {}", { i(1), i(2) })),
 	s("sec", fmt("\\section{{{}}}\n{}", { i(1), i(2) })),
+	s("par", fmt("\\paragraph{{{}}}\n{}", { i(1), i(2) })),
 	s("sub", fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
 	s("ssub", fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
 	s("ff", fmt( [[

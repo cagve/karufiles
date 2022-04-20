@@ -20,7 +20,8 @@ set.wrap=false
 set.termguicolors=true
 set.incsearch=true
 set.scrolloff=8
-set.hidden=true 
+set.hidden=true
+
 
 api.nvim_set_var("latex_template","/home/karu/Documents/LaTeX/templates")
 vim.cmd("colorscheme gruvbox")
