@@ -1,7 +1,6 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
 		use 'preservim/tagbar'
-		use 'vim-scripts/SyntaxAttr.vim'
 		use 'mzlogin/vim-markdown-toc'
 		use 'ThePrimeagen/harpoon'
 		use 'godlygeek/tabular'                                    
@@ -25,6 +24,7 @@ return require('packer').startup(function()
 		use 'sbdchd/neoformat'
 		use 'L3MON4D3/LuaSnip'
 		use 'saadparwaiz1/cmp_luasnip'
+		use 'kdheepak/cmp-latex-symbols'
 		use 'tpope/vim-commentary'                                
 		use 'tpope/vim-fugitive'                                   
 		use 'tpope/vim-surround'                                 

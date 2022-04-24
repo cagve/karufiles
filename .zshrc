@@ -13,6 +13,7 @@ export PATH=$GEM_HOME/bin:$PATH
 
 alias ls='ls --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias spotify='LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'
 
 autoload -Uz vcs_info
 precmd() { vcs_info }
