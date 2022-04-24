@@ -22,6 +22,9 @@ set.incsearch=true
 set.scrolloff=8
 set.hidden=true
 
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+
 
 api.nvim_set_var("latex_template","/home/karu/Documents/LaTeX/templates")
 vim.cmd("colorscheme gruvbox")
