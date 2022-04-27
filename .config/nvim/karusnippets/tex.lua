@@ -45,6 +45,9 @@ local snippets = {
 		i(1),
 		d(2,table_nodes,{1})}
 	)),
+	s("color", {
+		t("{\\color{"),i(1), t("}"), i(2), t("} "),i(3)
+	}),
 	s("en", {
 		t({"\\begin{enumerate}",
 		"\t\\item "}), i(1), d(2, rec_ls, {}),
@@ -60,6 +63,7 @@ local snippets = {
 	s("bf", fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
 	s("it", fmt("\\textit{{{}}} {}", { i(1), i(2) })),
 	s("dm", fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
+	s("par", fmt("\\paragraph{{{}}} {}", { i(1), i(2) })),
 	s("sec", fmt("\\section{{{}}}\n{}", { i(1), i(2) })),
 	s("sub", fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
 	s("ssub", fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
@@ -88,7 +92,9 @@ local snippets = {
 			end),
 		})
 		)
-	)
+	),
+	s('"', fmt("``{}'' {}",{i(1),i(2)})),
+	s('sal', t("\\salto"))
 }
 
 return snippets

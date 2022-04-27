@@ -1,4 +1,5 @@
 inoremap <C-u> <c-g>u<Esc>[s1z=`]a<c-g>u 
+nmap \al :TXaddlabel()<CR>
 
 set spell
 set spelllang=es
