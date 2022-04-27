@@ -1,3 +1,4 @@
+-- Hola mundo
 require('karu.settings')
 require('karu.mappings')
 require('karu.plugins')
