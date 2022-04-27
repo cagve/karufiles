@@ -3,6 +3,7 @@ require('karu.settings')
 require('karu.mappings')
 require('karu.plugins')
 require('karu.utils')
+require('karu.augroups')
 
 require('karu.plugins.autopairs')
 require('karu.plugins.cmp')
