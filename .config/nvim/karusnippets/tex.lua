@@ -74,6 +74,13 @@ local snippets = {
 		]], { i(1), i(2) }
 		)
 	),
+	s("bb", fmt( [[
+		\begin{{block}}{{{}}}
+			{}
+		\end{{block}}
+		]], { i(1), i(2) }
+		)
+	),
 	s("beg", fmt( [[ 
 		\begin{{{}}}
 			{}
