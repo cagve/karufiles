@@ -9,105 +9,154 @@ local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 
-local rec_ls
-rec_ls = function()
-	return sn(nil, {
-		c(1, {
-			t({""}),
-			sn(nil, {t({"", "\t\\item "}), i(1), d(2, rec_ls, {})}),
-		}),
-	});
-end
+local tex = {}
 
-local table_nodes
-table_nodes = function (args)
-	local j = 1
-	local nodes = {}
-	local str = args[1][1]:gsub("%s+", "")
-	local size = string.len(str)
-	while (j<=size) do
-		if j == 1 then
-			table.insert(nodes, i(j))
-		else
-			table.insert(nodes, t({" & "}))
-			table.insert(nodes, i(j))
-		end
-		j=j+1
-	end
-	return sn(nil, nodes)
+tex.is_math = function ()
+	return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
 local snippets = {
-	s("tab", fmt( [[ 
-		\begin{{tabular}}[{}]
-			{}
-		\end{{tabular}} ]],{
-		i(1),
-		d(2,table_nodes,{1})}
-	)),
-	s("color", {
-		t("{\\color{"),i(1), t("}"), i(2), t("} "),i(3)
-	}),
-	s("en", {
+	-- LISTAS
+	s({trig="en"}, {
 		t({"\\begin{enumerate}",
-		"\t\\item "}), i(1), d(2, rec_ls, {}),
+		"\t\\item "}), i(1),
 		t({"", "\\end{enumerate}"}), i(0)
 	}),
-	s("ls", {
+	s({trig="ls"}, {
 		t({"\\begin{itemize}",
-		"\t\\item "}), i(1), d(2, rec_ls, {}),
+		"\t\\item "}), i(1),
 		t({"", "\\end{itemize}"}), i(0)
 	}),
-	s("tt", {
-		t("\\text{ \\texttt{"),
-		i(1),
-		t("}} "),
-		i(2)
-	}),
-	s("im", fmt("${}$ {}", { i(1), i(2) })),
-	s("bf", fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
-	s("it", fmt("\\textit{{{}}} {}", { i(1), i(2) })),
-	s("dm", fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
-	s("par", fmt("\\paragraph{{{}}} {}", { i(1), i(2) })),
-	s("sec", fmt("\\section{{{}}}\n{}", { i(1), i(2) })),
-	s("par", fmt("\\paragraph{{{}}}\n{}", { i(1), i(2) })),
-	s("sub", fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
-	s("ssub", fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
-	s("ff", fmt( [[
+
+	-- MATH MODE
+	s({trig="<>"}, fmt("\\langle {} \\rangle {}", {i(1), i(2)}),{condition = tex.is_math}),
+	s({trig="{}"}, fmt("\\{{{}\\}} {}", {i(1), i(2)}), {condition = tex.is_math}),
+
+	-- FORMATO TEXTO
+	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
+	s({trig="tt"}, {t("\\text{ \\texttt{"), i(1), t("}} "), i(2)}),
+	s({trig="im"}, fmt("${}$ {}", { i(1), i(2) })),
+	s({trig="bf"}, fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
+	s({trig="it"}, fmt("\\textit{{{}}} {}", { i(1), i(2) })),
+	s({trig="dm"}, fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
+	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
+
+
+	-- SECCIONES
+	s({trig="sec"}, fmt("\\section{{{}}}\n{}", { i(1), i(2) })),
+	s({trig="par"}, fmt("\\paragraph{{{}}}\n{}", { i(1), i(2) })),
+	s({trig="sub"}, fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
+	s({trig="ssub"}, fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
+
+	-- BEAMER
+	s({trig="ff"}, fmt( [[
 		\begin{{frame}} \frametitle{{{}}}
 			{}
 		\end{{frame}}
-		]], { i(1), i(2) }
+		]], { i(1, "frame title"), i(2) }
 		)
 	),
-	s("bb", fmt( [[
+	s({trig="bb"}, fmt( [[
 		\begin{{block}}{{{}}}
 			{}
 		\end{{block}}
-		]], { i(1), i(2) }
+		]], { i(1, "block title"), i(2) }
 		)
 	),
-	s("beg", fmt( [[ 
+
+	-- ENTORNOS
+	s({trig="beg"}, fmt( [[ 
 		\begin{{{}}}
 			{}
 		\end{{{}}}
 	]], { i(1), i(2), rep(1) }
 		)
 	),
-	s("template", fmt(
-		"{}",
+
+	-- TEMPLATES
+	s({trig="template"},
 		c(1, {
-			f(function()
-				return require("karu.utils").get_latex_templates()[1]
-			end),
-			f(function()
-				return require("karu.utils").get_latex_templates()[2]
-			end),
-		})
-		)
-	),
-	s('"', fmt("``{}'' {}",{i(1),i(2)})),
-	s('sal', t("\\salto"))
+			fmt([[
+			\documentclass[a4paper]{{article}}
+
+			\usepackage{{natbib}} %bibliografia
+			\usepackage{{hyperref}} %enlaces en el documento
+			\usepackage{{amssymb}} %Simbolos matemáticos http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amssymb-symbols.pdf
+			\usepackage[spanish]{{babel}}%Español
+			\usepackage[utf8]{{inputenc}}%utf8
+
+			\newcommand{{\salto}}{{\par \medskip}}
+
+			\title{{{}}}
+			\author{{Carlos Aguilera Ventura}}
+			\date{{\today}}
+
+			\begin{{document}}
+			\maketitle \tableofcontents
+			{}
+			\end{{document}}
+			]], {i(1, "Title"),i(2)}),
+			fmt([[
+			\documentclass[a4paper]{{article}}
+
+			\usepackage{{natbib}} %bibliografia
+			\usepackage{{hyperref}} %enlaces en el documento
+			\usepackage{{amssymb}} %Simbolos matemáticos http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amssymb-symbols.pdf
+			\usepackage[spanish]{{babel}}%Español
+			\usepackage[utf8]{{inputenc}}%utf8
+			\usepackage{{tikz}} %Para dibujar esquemas http://www.actual.world/resources/tex/doc/TikZ.pdf
+			\usepackage{{tcolorbox}}
+
+			\usetikzlibrary{{positioning,arrows,calc,shapes,babel}} 
+			\tikzset{{
+				modal/.style={{>=stealth',shorten >=1pt,shorten <=1pt,auto,node distance=1.5cm,
+				semithick}},
+				world/.style={{circle,draw,minimum size=0.5cm,fill=gray!15}},
+				point/.style={{circle,draw,inner sep=0.5mm,fill=black}},
+				reflexive above/.style={{->,loop,looseness=7,in=120,out=60}},
+				reflexive below/.style={{->,loop,looseness=7,in=240,out=300}},
+				reflexive left/.style={{->,loop,looseness=7,in=150,out=210}},
+				reflexive right/.style={{->,loop,looseness=7,in=30,out=330}}
+			}}
+
+			\newtheorem{{defi}}{{Definici\'on}}
+			\newtheorem{{ej}}{{Ejercicio}}
+			\newtheorem{{ex}}{{Ejemplo}}
+			\newtheorem{{theorem}}{{Teorema}}
+
+			\newcommand{{\salto}}{{\par \medskip}}
+
+			\title{{{}}}
+			\author{{Carlos Aguilera Ventura}}
+			\date{{\today}}
+
+			\begin{{document}}
+			\maketitle \tableofcontents \newpage
+			{}
+			\end{{document}}
+			]], {i(1, "Title"),i(2)}),
+			fmt([[
+			\documentclass{{beamer}}
+
+			\usepackage{{natbib}} %bibliografia
+			\usepackage{{hyperref}} %enlaces en el documento
+			\usepackage{{amssymb}} %Simbolos matemáticos http://milde.users.sourceforge.net/LUCR/Math/mathpackages/amssymb-symbols.pdf
+			\usepackage[spanish]{{babel}}%Español
+			\usepackage[utf8]{{inputenc}}%utf8
+
+			\newcommand{{\salto}}{{\par \medskip}}
+
+			\title{{{}}}
+			\author{{Carlos Aguilera Ventura}}
+			\date{{\today}}
+
+			\begin{{document}}
+			\maketitle \tableofcontents
+			{}
+			\end{{document}}
+			]], {i(1, "Title"),i(2)}),
+		})),
+	s('sal', t({trig="\\salto"}))
 }
 
 return snippets

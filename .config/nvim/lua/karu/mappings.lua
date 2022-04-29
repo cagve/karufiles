@@ -7,11 +7,8 @@ keymap('n','<leader>y', '"+y', opts)
 keymap('v','<leader>y', '"+y', opts)
 keymap('n','<A-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
 keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
-keymap('n','<leader>s', ':e ~/vimwiki/Scratch.md<CR>', opts)
-keymap('n','<leader>t', ':e ~/vimwiki/To-do.md<CR>', opts)
 keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
 keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
-
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})
@@ -31,7 +28,7 @@ keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<cr>
 keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", {})
 keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {})
 keymap('n', '<leader>gb', "<cmd>lua require('telescope.builtin').git_branches()<cr>", {})
-keymap('n', '<leader>fr', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {})
+keymap('n', '<leader>rg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {})
 keymap('n', '<leader>co', "<cmd>lua require('telescope.builtin').quickfix()<cr>", {})
 
 -- Lsp server
