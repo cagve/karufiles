@@ -6,7 +6,7 @@ local writersGroupSettings = function()
 	vim.opt.textwidth=80
 	vim.opt.conceallevel=2
 	vim.opt.concealcursor='c'
-	vim.api.nvim_set_keymap('inoremap','<C-u>','<c-g>u<Esc>[s1z=`]a<c-g>u',{})
+	vim.api.nvim_set_keymap('i','<C-u>','<c-g>u<Esc>[s1z=`]a<c-g>u',{})
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {pattern = {"*.tex", "*.md"}, callback = writersGroupSettings , group = writers})
