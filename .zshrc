@@ -3,6 +3,7 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 
 export VISUAL=nvim
+export TODOIST_API_KEY="$(pass Todoist/API)"
 export EDITOR=nvim
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 

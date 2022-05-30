@@ -129,6 +129,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="firefox"] $ws3
 assign [class="okular"] $ws2
 assign [class="Thunderbird"] $ws9
+for_window [class="feh"] floating enable
+
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart

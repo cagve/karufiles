@@ -1,35 +1,30 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
-		use 'preservim/tagbar'
-		use 'mzlogin/vim-markdown-toc'
-		use 'ThePrimeagen/harpoon'
-		use 'godlygeek/tabular'                                    
-		use 'hrsh7th/cmp-buffer'
-		use 'hrsh7th/cmp-nvim-lsp'
-		use 'hrsh7th/cmp-nvim-lua'
-		use 'hrsh7th/cmp-path'
-		use 'hrsh7th/nvim-cmp'
-		use 'junegunn/goyo.vim'
-		use 'kyazdani42/nvim-web-devicons'
-		use 'lervag/vimtex'                                        
-		use 'mbbill/undotree'
-		use 'morhetz/gruvbox'
-		use 'neovim/nvim-lspconfig'                                
-		use 'nvim-lua/plenary.nvim'
+		use 'preservim/tagbar'	-- Tag bar to display info
+		use 'numirias/semshi'	-- Python tool
+		use 'ThePrimeagen/harpoon' -- Just love
+		use 'hrsh7th/cmp-buffer' -- cmp with buffer info
+		use 'hrsh7th/cmp-nvim-lsp' -- cmp with lsp info
+		use 'hrsh7th/cmp-nvim-lua' -- cmp lua 
+		use 'hrsh7th/cmp-path' -- cmp with path info
+		use 'saadparwaiz1/cmp_luasnip' -- cmp Snippets
+		use 'hrsh7th/nvim-cmp' -- cmp
+		use 'kyazdani42/nvim-web-devicons' -- icons
+		use 'lervag/vimtex' -- Latex Stuff -> Migrate to not use vimtex
+		use 'morhetz/gruvbox' -- Theme
+		use 'neovim/nvim-lspconfig' -- Config lsp
+		use 'nvim-lua/plenary.nvim' 
 		use 'nvim-lua/popup.nvim'
-		use 'nvim-lualine/lualine.nvim'
-		use 'nvim-telescope/telescope.nvim'
-		use 'nvim-treesitter/nvim-treesitter'
-		use 'nvim-treesitter/playground'
-		use 'sbdchd/neoformat'
-		use 'L3MON4D3/LuaSnip'
-		use 'saadparwaiz1/cmp_luasnip'
-		use 'kdheepak/cmp-latex-symbols'
-		use 'tpope/vim-commentary'                                
-		use 'tpope/vim-fugitive'                                   
-		use 'tpope/vim-surround'                                 
-		use 'vimwiki/vimwiki'
+		use 'nvim-lualine/lualine.nvim' -- line
+		use 'nvim-telescope/telescope.nvim' -- <3
+		use 'nvim-treesitter/nvim-treesitter' -- Syntax highlight etc
+		use 'nvim-treesitter/playground' 
+		use 'L3MON4D3/LuaSnip' -- Snippets
+		use 'tpope/vim-commentary' -- Comment line with gc
+		use 'tpope/vim-fugitive' -- Github
+		use 'tpope/vim-surround' -- Surround
+		use 'vimwiki/vimwiki' -- wiki
+		use 'windwp/nvim-autopairs' -- Close pairs
 		use 'wbthomason/packer.nvim'
-		use 'windwp/nvim-autopairs'
 	end)
 

@@ -31,6 +31,9 @@ local snippets = {
 	-- MATH MODE
 	s({trig="<>"}, fmt("\\langle {} \\rangle {}", {i(1), i(2)}),{condition = tex.is_math}),
 	s({trig="{}"}, fmt("\\{{{}\\}} {}", {i(1), i(2)}), {condition = tex.is_math}),
+	s({trig="text"}, fmt("\\text{{{}}} {}", {i(1), i(2)}), {condition = tex.is_math}),
+	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
+	s({trig="len"}, c(1, {fmt("\\mathcal{{L}}_{{{}}} {}", {i(1), i(2)}),fmt("\\mathcal{{L}} {} ", {i(1)})}),  {condition = tex.is_math}),
 
 	-- FORMATO TEXTO
 	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
@@ -48,6 +51,7 @@ local snippets = {
 	s({trig="sub"}, fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
 	s({trig="ssub"}, fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
 
+	s({trig='sal'}, t("\\salto")),
 	-- BEAMER
 	s({trig="ff"}, fmt( [[
 		\begin{{frame}} \frametitle{{{}}}
@@ -156,7 +160,6 @@ local snippets = {
 			\end{{document}}
 			]], {i(1, "Title"),i(2)}),
 		})),
-	s('sal', t({trig="\\salto"}))
 }
 
 return snippets

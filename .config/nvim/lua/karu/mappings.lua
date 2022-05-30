@@ -7,6 +7,7 @@ keymap('n','<leader>y', '"+y', opts)
 keymap('v','<leader>y', '"+y', opts)
 keymap('n','<A-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
 keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
+keymap('n', 'Y', "y$", opts)
 keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
 keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
 
@@ -33,6 +34,7 @@ keymap('n', '<leader>co', "<cmd>lua require('telescope.builtin').quickfix()<cr>"
 
 -- Lsp server
 keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 keymap('n', '<leader>rn', "<cmd>lua vim.lsp.buf.rename()<cr>", {})
 keymap('n', '<leader>ca', "<cmd>lua vim.lsp.buf.code_action()<cr>", {})

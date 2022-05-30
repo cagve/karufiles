@@ -42,7 +42,7 @@ cmp.setup{
 				nvim_lsp = "[LSP]",
 				luasnip = "[LuaSnip]",
 				nvim_lua = "[Lua]",
-				latex_symbols = "[LaTeX]",
+				buffer = "[Buf]",
 				path = "[Path]"
 			})[entry.source.name]
 			return vim_item
@@ -60,8 +60,7 @@ cmp.setup{
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
-		{ name = 'latex_symbols' },
-		-- { name = 'buffer' },
+		{ name = 'buffer' },
 		{ name = 'path'},
 		{ name = 'nvim_lua'},
 	})
