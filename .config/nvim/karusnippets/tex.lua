@@ -11,9 +11,52 @@ local d = ls.dynamic_node
 
 local tex = {}
 
+local table_node
+table_node= function(args)
+	local tabs = {}
+	local count
+	-- count = tonumber(args[1][1] 
+	table = args[1][1]:gsub("%s",""):gsub("|","")
+	count = table:len()
+	for j=1, count do
+		local iNode
+		iNode = i(j)
+		tabs[2*j-1] = iNode
+		if j~=count then
+			tabs[2*j] = t" & "
+		end
+	end
+	return sn(nil, tabs)
+end
+
+local rec
+rec = function ()
+	return sn(nil, {
+		c(1, {
+			t({""}),
+			sn(nil, {t{"\\\\",""} ,d(1,table_node, {ai[1]}), d(2, rec, {ai[1]})})
+		}),
+	});
+end
+
 tex.is_math = function ()
 	return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
+
+local rec_grammar
+rec_grammar = function ()
+	return sn(nil, {
+		c(1, {
+			t({""}),
+			sn(nil,{t" \\mid ",i(1), d(2, rec_grammar)})
+		}),
+	});
+end
+
+ls.config.set_config({
+	history = true,
+	enable_autosnippets=true
+})
 
 local snippets = {
 	-- LISTAS
@@ -29,11 +72,27 @@ local snippets = {
 	}),
 
 	-- MATH MODE
+	s(
+		{ trig = "([a-zA-Z])(%d)", regTrig = true },
+		f(function(_, snip)
+			return snip.captures[1] .."_".. snip.captures[2]
+		end, {}),
+		{condition=tex.is_math}
+	),
+	s(
+		{ trig = "([a-zA-Z])(%d+)", regTrig = true },
+		f(function(_, snip)
+			return snip.captures[1] .."_{".. snip.captures[2].."}"
+		end, {}),
+		{condition=tex.is_math}
+	),
 	s({trig="<>"}, fmt("\\langle {} \\rangle {}", {i(1), i(2)}),{condition = tex.is_math}),
 	s({trig="{}"}, fmt("\\{{{}\\}} {}", {i(1), i(2)}), {condition = tex.is_math}),
 	s({trig="text"}, fmt("\\text{{{}}} {}", {i(1), i(2)}), {condition = tex.is_math}),
-	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
 	s({trig="len"}, c(1, {fmt("\\mathcal{{L}}_{{{}}} {}", {i(1), i(2)}),fmt("\\mathcal{{L}} {} ", {i(1)})}),  {condition = tex.is_math}),
+	-- Print grammar like p::= p | p \land q |
+	s({trig="gr"}, {i(1), t{" ::= "}, i(2), d(3, rec_grammar,{})}, {condition={tex.is_math}}), 
+
 
 	-- FORMATO TEXTO
 	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
@@ -69,6 +128,14 @@ local snippets = {
 	),
 
 	-- ENTORNOS
+	s("table", {
+		t"\\begin{tabular}{",
+		i(1,"0"),
+		t{"}",""},
+		d(2, table_node, {1}, {}),
+		d(3, rec, {1}),
+		t{"","\\end{tabular}"}
+	}),
 	s({trig="beg"}, fmt( [[ 
 		\begin{{{}}}
 			{}
@@ -162,4 +229,41 @@ local snippets = {
 		})),
 }
 
-return snippets
+local autosnippets = {
+	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
+	-- GREEKS LETTERS
+	s({trig="aa"}, t("\\alpha "), {condition = tex.is_math}),
+	s({trig="bb"}, t("\\beta "), {condition = tex.is_math}),
+	s({trig="gg"}, t("\\gamma "), {condition = tex.is_math}),
+	s({trig="GG"}, t("\\Gamma "), {condition = tex.is_math}),
+	s({trig="dd"}, t("\\delta "), {condition = tex.is_math}),
+	s({trig="DD"}, t("\\Delta "), {condition = tex.is_math}),
+	s({trig="ee"}, t("\\varepsilon "), {condition = tex.is_math}),
+	s({trig="zz"}, t("\\zeta "), {condition = tex.is_math}),
+	s({trig="thh"}, t("\\theta "), {condition = tex.is_math}),
+	s({trig="THH"}, t("\\Theta "), {condition = tex.is_math}),
+	s({trig="ii"}, t("\\iota "), {condition = tex.is_math}),
+	s({trig="kk"}, t("\\kappa "), {condition = tex.is_math}),
+	s({trig="ll"}, t("\\lambda "), {condition = tex.is_math}),
+	s({trig="LL"}, t("\\Lambda "), {condition = tex.is_math}),
+	s({trig="muu"}, t("\\mu "), {condition = tex.is_math}),
+	s({trig="nuu"}, t("\\nu "), {condition = tex.is_math}),
+	s({trig="xx"}, t("\\chi "), {condition = tex.is_math}),
+	s({trig="pii"}, t("\\pi "), {condition = tex.is_math}),
+	s({trig="PII"}, t("\\Pi "), {condition = tex.is_math}),
+	s({trig="roo"}, t("\\rho "), {condition = tex.is_math}),
+	s({trig="tt"}, t("\\tau "), {condition = tex.is_math}),
+	s({trig="uu"}, t("\\upsilon "), {condition = tex.is_math}),
+	s({trig="UU"}, t("\\Upsilon "), {condition = tex.is_math}),
+	s({trig="oo"}, t("\\omega "), {condition = tex.is_math}),
+	s({trig="OO"}, t("\\Omega "), {condition = tex.is_math}),
+	s({trig="ss"}, t("\\sigma "), {condition = tex.is_math}),
+	s({trig="SS"}, t("\\Sigma "), {condition = tex.is_math}),
+	s({trig="phh"}, t("\\varphi "), {condition = tex.is_math}),
+	s({trig="PHH"}, t("\\Phi "), {condition = tex.is_math}),
+	s({trig="pss"}, t("\\psi "), {condition = tex.is_math}),
+	s({trig="PSS"}, t("\\Psi "), {condition = tex.is_math}),
+	s({trig="ZZ"}, t("\\Zeta "), {condition = tex.is_math})
+}
+
+return snippets, autosnippets
