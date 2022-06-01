@@ -91,7 +91,7 @@ local snippets = {
 	s({trig="text"}, fmt("\\text{{{}}} {}", {i(1), i(2)}), {condition = tex.is_math}),
 	s({trig="len"}, c(1, {fmt("\\mathcal{{L}}_{{{}}} {}", {i(1), i(2)}),fmt("\\mathcal{{L}} {} ", {i(1)})}),  {condition = tex.is_math}),
 	-- Print grammar like p::= p | p \land q |
-	s({trig="gr"}, {i(1), t{" ::= "}, i(2), d(3, rec_grammar,{})}, {condition={tex.is_math}}), 
+	s({trig="gr"}, {i(1), t{" ::= "}, i(2), d(3, rec_grammar,{})}, {condition=tex.is_math}),
 
 
 	-- FORMATO TEXTO
@@ -231,6 +231,14 @@ local snippets = {
 
 local autosnippets = {
 	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
+
+	-- Operators
+	s({trig="la"}, t("\\land "), {condition = tex.is_math}),
+	s({trig="lo"}, t("\\lor "), {condition = tex.is_math}),
+	s({trig="lt"}, t("\\lto "), {condition = tex.is_math}),
+	s({trig="le"}, t("\\leftrightarrow "), {condition = tex.is_math}),
+	s({trig="ln"}, t("\\lnot "), {condition = tex.is_math}),
+
 	-- GREEKS LETTERS
 	s({trig="aa"}, t("\\alpha "), {condition = tex.is_math}),
 	s({trig="bb"}, t("\\beta "), {condition = tex.is_math}),
