@@ -46,7 +46,7 @@ keymap('n', '<leader>f', "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
 
 -- Menu
 keymap('n', '<C-n>', ":Explore<CR>", {})
-keymap('n', '<C-t>', ":TagbarToggle<CR>", {})
+keymap('n', '<leader>t', ":TagbarToggle<CR>", {})
 
 -- Git
 keymap('n', '<leader>gg', ":Git<CR>", {})
