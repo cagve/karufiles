@@ -3,14 +3,16 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 
 export VISUAL=nvim
-export TODOIST_API_KEY="$(pass Todoist/API)"
 export EDITOR=nvim
+export PDF_PATH=$HOME/Documents/Pdfs/
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 
 export PATH=~/.local/bin/:$PATH
 export PATH=~/.cargo/bin/:$PATH
 export PATH=~/scripts:$PATH
 export PATH=$GEM_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib/tree-sitter/build/:$LD_LIBRARY_PATH
+
 
 alias ls='ls --color=auto'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

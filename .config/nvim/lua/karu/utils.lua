@@ -3,6 +3,15 @@ local ls = require"luasnip"
 local api = vim.api
 
 
+M.check_backspace = function ()
+  local col = vim.fn.col(".") - 1
+  if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+    return true
+  else
+    return false
+  end
+end
+
 M.luasnip_expands = function ()
 	if ls.expand_or_jumpable() then
 		ls.expand_or_jump()

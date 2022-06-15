@@ -29,3 +29,4 @@ set.hidden=true
 api.nvim_set_var("latex_template","/home/karu/Documents/LaTeX/templates")
 vim.cmd("colorscheme gruvbox")
 vim.cmd("set rtp+=/home/karu/texbox")
+vim.cmd("set rtp+=/home/karu/Bitacora")

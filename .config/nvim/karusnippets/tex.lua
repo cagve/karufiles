@@ -8,6 +8,7 @@ local i = ls.insert_node
 local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
+local utils = require('karu.utils')
 
 local tex = {}
 
@@ -93,6 +94,18 @@ local snippets = {
 	-- Print grammar like p::= p | p \land q |
 	s({trig="gr"}, {i(1), t{" ::= "}, i(2), d(3, rec_grammar,{})}, {condition=tex.is_math}),
 
+	-- TIKZ PICTURE
+	s({trig="tikz"}, fmt( [[
+	\begin{{figure}}[ht!]
+		\begin{{tikzpicture}}
+			{}
+		\end{{tikzpicture}}
+		\caption{{{}}}
+		\label{{fig:{}}}
+	\end{{figure}}
+	]], { i(2),  i(1), rep(2),}
+		)
+	),
 
 	-- FORMATO TEXTO
 	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
@@ -101,7 +114,6 @@ local snippets = {
 	s({trig="bf"}, fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
 	s({trig="it"}, fmt("\\textit{{{}}} {}", { i(1), i(2) })),
 	s({trig="dm"}, fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
-	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
 
 
 	-- SECCIONES
@@ -231,13 +243,30 @@ local snippets = {
 
 local autosnippets = {
 	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
+	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
 
 	-- Operators
 	s({trig="la"}, t("\\land "), {condition = tex.is_math}),
 	s({trig="lo"}, t("\\lor "), {condition = tex.is_math}),
-	s({trig="lt"}, t("\\lto "), {condition = tex.is_math}),
+	s({trig="lt"}, t("\\to "), {condition = tex.is_math}),
 	s({trig="le"}, t("\\leftrightarrow "), {condition = tex.is_math}),
 	s({trig="ln"}, t("\\lnot "), {condition = tex.is_math}),
+
+	-- EPISTEMIC LOGIC
+	s(
+		{ trig = "k([a-d])", regTrig = true },
+		f(function(_, snip)
+				return "K_"..snip.captures[1]
+		end, {}),
+		{condition = tex.is_math}
+	),
+	s(
+		{ trig = "K([a-d])", regTrig = true },
+		f(function(_, snip)
+				return "\\hat{K}_"..snip.captures[1]
+		end, {}),
+		{condition = tex.is_math}
+	),
 
 	-- GREEKS LETTERS
 	s({trig="aa"}, t("\\alpha "), {condition = tex.is_math}),

@@ -10,6 +10,9 @@ keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
 keymap('n', 'Y', "y$", opts)
 keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
 keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
+keymap('v','<C-r>', "hy:%s/<C-r>h//gc<left><left><left>", opts)
+keymap('n','<leader>tt', ":vimgrep TODO %<CR>:copen<CR>", opts)
+
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})

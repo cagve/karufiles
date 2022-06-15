@@ -73,6 +73,8 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 
 require'lspconfig'.rust_analyzer.setup{capabilities = capabilities}
+require'lspconfig'.cssls.setup { capabilities = capabilities}
+require'lspconfig'.gopls.setup { capabilities = capabilities}
 require'lspconfig'.texlab.setup{capabilities = capabilities}
 require'lspconfig'.pyright.setup{capabilities = capabilities}
 require'lspconfig'.sumneko_lua.setup{

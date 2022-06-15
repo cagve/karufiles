@@ -7,9 +7,12 @@ local writersGroupSettings = function()
 	vim.opt.textwidth=80
 	vim.opt.conceallevel=2
 	vim.opt.concealcursor='c'
+	vim.api.nvim_set_keymap('n','\\r',':!drae <cword><CR>',{})
 	vim.api.nvim_set_keymap('i','<C-u>','<c-g>u<Esc>[s1z=`]a<c-g>u',{})
 	vim.api.nvim_set_keymap('v','\\i','c\\textit{<Esc>pa}<Esc>',{}) -- Reg: di\textit{pa}
 	vim.api.nvim_set_keymap('v','\\b','c\\textbf{<Esc>pa}<Esc>',{}) -- Reg: di\textbf{pa}
+	vim.api.nvim_set_keymap('v','\\c',"c``<Esc>pa''<Esc>",{}) -- Reg: di\textit{pa}
+	vim.api.nvim_set_keymap('n','\\w',":VimtexCountWords<CR>",{}) -- Reg: di\textit{pa}
 end
 
 local tfmGroupSetting = function ()

@@ -26,5 +26,6 @@ return require('packer').startup(function()
 		use 'vimwiki/vimwiki' -- wiki
 		use 'windwp/nvim-autopairs' -- Close pairs
 		use 'wbthomason/packer.nvim'
+		use "nvim-telescope/telescope-file-browser.nvim" 
 	end)
 

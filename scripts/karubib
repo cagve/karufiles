@@ -1,0 +1,5 @@
+#!/bin/bash
+BIB_PATH=$PDF_PATH/Database/bb.bib
+
+
+
