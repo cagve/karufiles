@@ -71,6 +71,7 @@ local snippets = {
 		"\t\\item "}), i(1),
 		t({"", "\\end{itemize}"}), i(0)
 	}),
+	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
 
 	-- MATH MODE
 	s(
@@ -93,6 +94,7 @@ local snippets = {
 	s({trig="len"}, c(1, {fmt("\\mathcal{{L}}_{{{}}} {}", {i(1), i(2)}),fmt("\\mathcal{{L}} {} ", {i(1)})}),  {condition = tex.is_math}),
 	-- Print grammar like p::= p | p \land q |
 	s({trig="gr"}, {i(1), t{" ::= "}, i(2), d(3, rec_grammar,{})}, {condition=tex.is_math}),
+	s({trig="tt"}, {t("\\text{ \\texttt{"), i(1), t("}}"), i(2)}, {condition=tex.is_math}),
 
 	-- TIKZ PICTURE
 	s({trig="tikz"}, fmt( [[
@@ -106,10 +108,41 @@ local snippets = {
 	]], { i(2),  i(1), rep(2),}
 		)
 	),
+	s({trig="w(%d)", regTrig = true }, {
+		t"\\node[world](w",
+		f(function(_, snip)
+				return snip.captures[1]
+		end, {}),
+		t")",
+		d(1, function(_, snip)
+			return sn(nil, {
+				t"[label=",
+				i(1),
+				t":",
+				t("$w_"..snip.captures[1].."$")
+			})
+		end,
+		{}),
+		c(2,{
+			t"]",
+			sn(nil, {
+				t", ",
+				i(1, " position "),
+				t" = ",
+				i(2),
+				t"cm of ",
+				i(3),
+				t"]",
+			})
+		}),
+		t"{",
+		i(3),
+		t"};"
+	}),
 
 	-- FORMATO TEXTO
 	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
-	s({trig="tt"}, {t("\\text{ \\texttt{"), i(1), t("}} "), i(2)}),
+	s({trig="tt"}, {t("\\texttt{"), i(1), t("} "), i(2)}),
 	s({trig="im"}, fmt("${}$ {}", { i(1), i(2) })),
 	s({trig="bf"}, fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
 	s({trig="it"}, fmt("\\textit{{{}}} {}", { i(1), i(2) })),
@@ -122,7 +155,8 @@ local snippets = {
 	s({trig="sub"}, fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
 	s({trig="ssub"}, fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
 
-	s({trig='sal'}, t("\\salto")),
+	s({trig='sal'}, t("\\salto ")),
+	s({trig='ver'}, {t("\\verb+"), i(1), t("+ "), i(2)}),
 	-- BEAMER
 	s({trig="ff"}, fmt( [[
 		\begin{{frame}} \frametitle{{{}}}
@@ -140,7 +174,7 @@ local snippets = {
 	),
 
 	-- ENTORNOS
-	s("table", {
+	s("tab", {
 		t"\\begin{tabular}{",
 		i(1,"0"),
 		t{"}",""},
@@ -239,18 +273,17 @@ local snippets = {
 			\end{{document}}
 			]], {i(1, "Title"),i(2)}),
 		})),
+		-- Operators
+		s({trig="la"}, t("\\land "), {condition = tex.is_math}),
+		s({trig="lo"}, t("\\lor "), {condition = tex.is_math}),
+		s({trig="lt"}, t("\\to "), {condition = tex.is_math}),
+		s({trig="le"}, t("\\leftrightarrow "), {condition = tex.is_math}),
+		s({trig="ln"}, t("\\lnot "), {condition = tex.is_math}),
+
 }
 
 local autosnippets = {
 	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
-	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
-
-	-- Operators
-	s({trig="la"}, t("\\land "), {condition = tex.is_math}),
-	s({trig="lo"}, t("\\lor "), {condition = tex.is_math}),
-	s({trig="lt"}, t("\\to "), {condition = tex.is_math}),
-	s({trig="le"}, t("\\leftrightarrow "), {condition = tex.is_math}),
-	s({trig="ln"}, t("\\lnot "), {condition = tex.is_math}),
 
 	-- EPISTEMIC LOGIC
 	s(

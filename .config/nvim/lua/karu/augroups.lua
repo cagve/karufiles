@@ -13,6 +13,8 @@ local writersGroupSettings = function()
 	vim.api.nvim_set_keymap('v','\\b','c\\textbf{<Esc>pa}<Esc>',{}) -- Reg: di\textbf{pa}
 	vim.api.nvim_set_keymap('v','\\c',"c``<Esc>pa''<Esc>",{}) -- Reg: di\textit{pa}
 	vim.api.nvim_set_keymap('n','\\w',":VimtexCountWords<CR>",{}) -- Reg: di\textit{pa}
+	vim.api.nvim_set_keymap('v','<leader>r', "d<CR>:lua require('texbox.tree').run_tree()<CR>",{})
+
 end
 
 local tfmGroupSetting = function ()

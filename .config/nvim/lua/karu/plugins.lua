@@ -1,7 +1,8 @@
 -- PACKER INSTALLED
 return require('packer').startup(function()
+		use 'junegunn/goyo.vim'
 		use 'preservim/tagbar'	-- Tag bar to display info
-		use 'numirias/semshi'	-- Python tool
+		-- use 'numirias/semshi'	-- Python tool
 		use 'ThePrimeagen/harpoon' -- Just love
 		use 'hrsh7th/cmp-buffer' -- cmp with buffer info
 		use 'hrsh7th/cmp-nvim-lsp' -- cmp with lsp info
