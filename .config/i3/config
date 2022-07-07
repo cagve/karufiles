@@ -1,4 +1,5 @@
 set $mod Mod4
+set $mod2 Mod1
 
 font pango:monospace 8
 
@@ -112,6 +113,13 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+$mod2+h workspace number $ws1
+bindsym $mod+$mod2+j workspace number $ws2
+bindsym $mod+$mod2+k workspace number $ws3
+bindsym $mod+$mod2+l workspace number $ws10
+bindsym $mod+$mod2+o workspace number $ws9
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
