@@ -1,0 +1,6 @@
+#!/bin/sh
+PICTURE_DIR=$HOME/Pictures/
+IMAGE=$(ls $PICTURE_DIR | fzf)
+
+feh --bg-fill $PICTURE_DIR$IMAGE
+
