@@ -1,5 +1,5 @@
 #/bin/sh
-declare -a files=("$HOME/suckless/" "$HOME/.tmux.conf" "$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
+declare -a files=("$HOME/.zsh_profile $HOME/suckless/" "$HOME/.tmux.conf" "$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
 user=$(hostnamectl | grep hostname | awk -F ':' '{print $2}')
 msg=$(echo $(date +'%d %B - %H:%M') "by "$user)
 '/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
