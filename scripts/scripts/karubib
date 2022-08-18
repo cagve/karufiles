@@ -1,0 +1,7 @@
+#!/bin/bash
+BIB_PATH=$HOME/Documents/Pdfs/Database/karubib.bib
+bibtex-ls $BIB_PATH | fzf --multi --ansi | bibtex-markdown references.bib
+
+
+
+

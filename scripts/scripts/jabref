@@ -1,0 +1,2 @@
+#!/bin/bash
+exec $HOME/jabref/build/image/bin/JabRef

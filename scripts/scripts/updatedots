@@ -1,0 +1,16 @@
+#/bin/sh
+declare -a files=("$HOME/.config/picom/" "$HOME/.zsh_profile" "$HOME/.tmux.conf" "$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
+user=$(hostnamectl | grep hostname | awk -F ':' '{print $2}')
+msg=$(echo $(date +'%d %B - %H:%M') "by "$user)
+'/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+for i in "${files[@]}"
+do 
+	/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add "$i"
+done
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -m "$msg"
+/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push -f
+
+
+
+
