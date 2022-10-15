@@ -1,8 +1,0 @@
-#!/bin/bash
-[ $(pamixer --get-mute) = true ]&&
-    pactl set-sink-mute 0 toggle 
-
-# Aumenta en 5 el volumen
-pactl set-sink-volume 0 +5%
-# Reinicia el block
-pkill -RTMIN+10 dwmblocks

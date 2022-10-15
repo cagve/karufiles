@@ -7,4 +7,4 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git fzf-zsh-plugin)
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh_profile
-
+alias luamake=/home/karu/lua-language-server/3rd/luamake/luamake

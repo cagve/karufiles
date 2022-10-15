@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo wpa_supplicant -B -i wlan0 -c ~/.cat_installer/cat_installer.conf

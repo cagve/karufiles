@@ -1,0 +1,6 @@
+#!/bin/sh
+PICTURE_DIR=$HOME/Pictures/Wallpapers/
+IMAGE=$(ls $PICTURE_DIR | rofi -dmenu)
+
+feh --bg-center $PICTURE_DIR$IMAGE
+

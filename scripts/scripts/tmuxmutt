@@ -1,0 +1,4 @@
+#!/bin/sh
+selected_name="neomutt"
+tmux neww bash -c "neomutt"
+

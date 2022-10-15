@@ -5,14 +5,21 @@ local opts = {noremap = true}
 keymap('n','<leader>r', ':source %<CR>', opts)
 keymap('n','<leader>y', '"+y', opts)
 keymap('v','<leader>y', '"+y', opts)
-keymap('n','<A-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
-keymap('n','<A-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
+keymap('n','<C-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
+keymap('n','<C-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
+keymap('n','j', 'gj', opts)
+keymap('n','k', 'gk', opts)
 keymap('n', 'Y', "y$", opts)
 keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
 keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
 keymap('v','<C-r>', "hy:%s/<C-r>h//gc<left><left><left>", opts)
-keymap('n','<leader>tt', ":vimgrep TODO %<CR>:copen<CR>", opts)
 
+-- ORG-MODE
+keymap('n','<leader>ww', ":e ~/Org/refile.org<CR>", opts)
+keymap('n', '<leader>w<leader>p', ':e ~/Org/phd.org<CR>', opts)
+keymap('n', '<leader>w<leader>h', ':e ~/Org/personal.org<CR>', opts)
+keymap('n', '<leader>w<leader>j', ':e ~/Org/journal.org<CR>', opts)
+keymap('n', '<leader>w<leader>r', ':e ~/Org/readings/readings.org<CR>', opts)
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})
@@ -27,7 +34,7 @@ keymap('n',' <leader>g' ,':G<CR>',{})
 keymap('n',' <leader>gc',':Gcommit<cr>',{})
 
 -- Telescope
-keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
+keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files({follow=true})<cr>", {})
 keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').git_files()<cr>", {})
 keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", {})
 keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {})
@@ -48,7 +55,7 @@ keymap('n', '<leader>q', "<cmd>lua vim.diagnostic.setloclist()<cr>", {})
 keymap('n', '<leader>f', "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
 
 -- Menu
-keymap('n', '<C-n>', ":Explore<CR>", {})
+keymap('n', '<C-n>', ":Lexplore<CR>", {})
 keymap('n', '<leader>t', ":TagbarToggle<CR>", {})
 
 -- Git

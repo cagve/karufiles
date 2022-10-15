@@ -1,12 +1,14 @@
-set $mod Mod4
-set $mod2 Mod1
+set $mod Mod1
+set $mod2 Mod4
 
 font pango:monospace 8
 
 # PROGRAMAS ON BOOT
+exec --no-startup-id i3-battery-popup
+exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-scale /home/karu/Pictures/ireland.jpg
+exec --no-startup-id feh --bg-center /home/karu/Pictures/Wallpapers/bacon.jpg
 exec --no-startup-id dunst
 exec --no-startup-id picom
 exec --no-startup-id syncthing
@@ -19,15 +21,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-
-
 # MAPPING PROGRAMAS 
 bindsym $mod+Return exec st
+bindsym $mod+shift+p exec playerctl play-pause
 bindsym $mod+equal exec ~/.local/bin/rofi-tmux ss
 bindsym $mod+c exec scrot
+bindsym $mod+o exec /home/karu/scripts/setwallpaper
 bindsym $mod+Shift+q kill
 bindsym $mod+p exec --no-startup-id dmenu_run
-bindsym $mod+o exec /home/karu/.local/bin/indexer.sh -b
+# bindsym $mod+o exec /home/karu/.local/bin/indexer.sh -b
 
 new_window pixel 2 px
 
@@ -39,11 +41,6 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# bindsym $mod+j focus left
-# bindsym $mod+k focus down
-# bindsym $mod+l focus up
-# bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -86,15 +83,12 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: term"
 set $ws2 "2: pdf"
 set $ws3 "3: web"
-set $ws4 "4"
+set $ws4 "4: jabref"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
@@ -136,7 +130,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # CLASSES
 assign [class="firefox"] $ws3
 assign [class="okular"] $ws2
-assign [class="Thunderbird"] $ws9
+assign [class="thunderbird"] $ws9
+assign [class="net-sf-jabref-JabRefMain"] $ws4
+for_window [instance="Msgcompose"] floating enable resize set 1024 768 move position center
 for_window [class="feh"] floating enable
 
 
@@ -170,10 +166,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-
-bar {
-		# mode hide
-		# hidden_state hide
-		# modifier Mod4
-        status_command i3status
-}
+# bar {
+# 		# mode hide
+# 		# hidden_state hide
+# 		# modifier Mod4
+#         # status_command i3status
+# }

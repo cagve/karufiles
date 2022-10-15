@@ -143,11 +143,12 @@ local snippets = {
 	-- FORMATO TEXTO
 	s({trig="color"}, fmt("{{ \\color{{{}}} {}}}", {i(1, "color"), i(2)})),
 	s({trig="tt"}, {t("\\texttt{"), i(1), t("} "), i(2)}),
-	s({trig="im"}, fmt("${}$ {}", { i(1), i(2) })),
+	s({trig="im"}, fmt("${}${}", { i(1), i(2) })),
 	s({trig="bf"}, fmt("\\textbf{{{}}} {}", { i(1), i(2) })),
 	s({trig="it"}, fmt("\\textit{{{}}} {}", { i(1), i(2) })),
 	s({trig="dm"}, fmt("\\[\n{}\n\\]\n {}", { i(1), i(2) })),
 
+	s({trig="t"}, fmt("\\text{{ {} }} ", { i(1)}),{condition=tex.is_math()}),
 
 	-- SECCIONES
 	s({trig="sec"}, fmt("\\section{{{}}}\n{}", { i(1), i(2) })),
@@ -280,30 +281,41 @@ local snippets = {
 		s({trig="le"}, t("\\leftrightarrow "), {condition = tex.is_math}),
 		s({trig="ln"}, t("\\lnot "), {condition = tex.is_math}),
 
+        -- TEXT
+        s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
+        s({trig="all"}, fmt("\\text{{ for all }} {}", {i(1)}), {condition = tex.is_math}),
+
+
 }
 
 local autosnippets = {
-	s({trig="iff"}, fmt("\\text{{ syss }} {}", {i(1)}), {condition = tex.is_math}),
 
-	-- EPISTEMIC LOGIC
-	s(
-		{ trig = "k([a-d])", regTrig = true },
-		f(function(_, snip)
-				return "K_"..snip.captures[1]
-		end, {}),
-		{condition = tex.is_math}
-	),
-	s(
-		{ trig = "K([a-d])", regTrig = true },
-		f(function(_, snip)
-				return "\\hat{K}_"..snip.captures[1]
-		end, {}),
-		{condition = tex.is_math}
-	),
+-- 	-- EPISTEMIC LOGIC
+-- 	s(
+-- 		{ trig = "k([a-d])", regTrig = true },
+-- 		f(function(_, snip)
+-- 				return "K_"..snip.captures[1]
+-- 		end, {}),
+-- 		{condition = tex.is_math}
+-- 	),
+-- 	s(
+-- 		{ trig = "K([a-d])", regTrig = true },
+-- 		f(function(_, snip)
+-- 				return "\\hat{K}_"..snip.captures[1]
+-- 		end, {}),
+-- 		{condition = tex.is_math}
+-- 	),
 
+	s({trig="(%a)cc", regTrig = true }, {
+        t"\\mathcal{",
+		f(function(_, snip)
+				return snip.captures[1]
+		end, {}),
+        t"}"
+    }, {condition = tex.is_math}),
 	-- GREEKS LETTERS
-	s({trig="aa"}, t("\\alpha "), {condition = tex.is_math}),
-	s({trig="bb"}, t("\\beta "), {condition = tex.is_math}),
+	s({trig="aa"}, t("\\alpha"), {condition = tex.is_math}),
+	s({trig="bb"}, t("\\beta"), {condition = tex.is_math}),
 	s({trig="gg"}, t("\\gamma "), {condition = tex.is_math}),
 	s({trig="GG"}, t("\\Gamma "), {condition = tex.is_math}),
 	s({trig="dd"}, t("\\delta "), {condition = tex.is_math}),

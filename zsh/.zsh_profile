@@ -6,6 +6,8 @@ fi
 # PATH Variables
 export PATH=$PATH:/home/karu/scripts
 export PATH=$PATH:/home/karu/.local/bin
+export PATH=$PATH:/home/karu/.cargo/bin
+export PATH=$PATH:/home/karu/lua-language-server/bin/
 export VISUAL=nvim;
 export EDITOR=nvim;
 export STOW_FOLDER=/home/karu/.dotfiles
@@ -19,6 +21,7 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 # Alias
 alias ls='ls --color=auto'
+alias rmswap='rm * ~/.local/state/nvim/swap/*'
 alias xelatexC='xelatex -output-driver="xdvipdfmx -i dvipdfmx-unsafe.cfg -q -E"'
 
 # GIT INFO

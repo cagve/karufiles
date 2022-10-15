@@ -2,6 +2,7 @@ require('telescope').setup{
 	defaults = {
 		vimgrep_arguments = {
 			'rg',
+            '-L',
 			'--color=never',
 			'--no-heading',
 			'--with-filename',
@@ -22,4 +23,5 @@ require('telescope').setup{
 			color_devicons = true,
 	}
 }
+
 

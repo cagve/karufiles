@@ -3,6 +3,7 @@ local api = vim.api
 
 vim.g.mapleader=" "
 set.title=true
+set.hidden=true
 set.errorbells=false
 set.tabstop=4 
 set.softtabstop=4
@@ -19,14 +20,17 @@ set.spell=false
 set.wrap=false
 set.termguicolors=true
 set.incsearch=true
+set.pumheight=20                        -- Makes popup menu entry smaller
+-- set.ruler=false         			    -- Show the cursor position all the time
+set.expandtab=true                      -- Converts tabs to spaces
+set.smarttab=true                       -- Makes tabbing smarter will realize you have 2 vs 4
+set.autoindent=true                     -- Good auto indent
+set.smartindent=false					-- prevents extra indenting 
 set.scrolloff=8
-set.hidden=true
-
--- vim.wo.foldmethod = 'expr'
--- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-
 
 api.nvim_set_var("latex_template","/home/karu/Documents/LaTeX/templates")
+
+vim.cmd("autocmd FileType netrw setl bufhidden=wipe") -- permit toggle netrw
 vim.cmd("colorscheme gruvbox")
 vim.cmd("set rtp+=/home/karu/texbox")
-vim.cmd("set rtp+=/home/karu/Bitacora")
+vim.cmd("set rtp+=/home/karu/ProjectManager")

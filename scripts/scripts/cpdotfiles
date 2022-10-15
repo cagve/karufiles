@@ -1,7 +1,0 @@
-#!/bin/bash
-declare -a files=("$HOME/suckless/" "$HOME/.tmux.conf" "$HOME/.config/i3/" "$HOME/scripts/" "$HOME/.config/nvim/" "$HOME/.zshrc" "$HOME/.tmux.conf" )
-for i in "${files[@]}"
-do 
-	sudo cp "$i" /run/media/karu/writable/
-done
-
