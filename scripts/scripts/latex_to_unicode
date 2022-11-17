@@ -1,0 +1,5 @@
+#!/bin/bash
+LATEX=$(xclip -o)
+UNICODE=$(echo "\$$LATEX\$" | pandoc -t plain)
+echo $UNICODE | xclip -i 
+dunstify "$UNICODE to the clipboard"

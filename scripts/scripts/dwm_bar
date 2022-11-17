@@ -1,0 +1,22 @@
+#!/bin/bash
+# ===================== DATE
+DATE=$( date +"%F %R" )
+
+# ===================== MODULE BATTERY
+BATTERY_INFO=($( acpi | awk -F',' '{ print $0 }'))
+CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
+ICON=""
+if [[ "${BATTERY_INFO[2]}" == *"Charging"* ]] || [[ "${BATTERY_INFO[2]}" == *"Unknown"* ]] ; then
+    ICON="CHR"
+else
+    ICON="BAT"
+fi
+
+BAT="$ICON ($CHARGE%)"
+
+# ===================== DISPLAY
+NEWMAILS=$(find /repositorio/Mail/INBOX/new/ -type f | wc -l)
+MAIL="MAIL: $NEWMAILS"
+
+# ===================== DISPLAY
+xsetroot -name " $MAIL | $BAT | $DATE " sleep 1m    # Update time every minute

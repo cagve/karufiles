@@ -1,0 +1,3 @@
+#!/bin/bash
+PDF_FOLDER=$HOME/Phd/Database/Papers/
+ls $PDF_FOLDER | rofi -dmenu

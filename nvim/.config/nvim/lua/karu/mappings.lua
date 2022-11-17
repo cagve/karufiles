@@ -7,19 +7,15 @@ keymap('n','<leader>y', '"+y', opts)
 keymap('v','<leader>y', '"+y', opts)
 keymap('n','<C-j>', ':set paste<CR>m`o<Esc>``:set nopaste<CR>', opts)
 keymap('n','<C-k>', ':set paste<CR>m`O<Esc>``:set nopaste<CR>', opts)
-keymap('n','j', 'gj', opts)
-keymap('n','k', 'gk', opts)
 keymap('n', 'Y', "y$", opts)
 keymap('v', 'J'," :m '>+1<CR>gv=gv",opts)
 keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
-keymap('v','<C-r>', "hy:%s/<C-r>h//gc<left><left><left>", opts)
+keymap('v', '<C-r>', "hy:%s/<C-r>h//gc<left><left><left>", opts)
 
--- ORG-MODE
-keymap('n','<leader>ww', ":e ~/Org/refile.org<CR>", opts)
-keymap('n', '<leader>w<leader>p', ':e ~/Org/phd.org<CR>', opts)
-keymap('n', '<leader>w<leader>h', ':e ~/Org/personal.org<CR>', opts)
-keymap('n', '<leader>w<leader>j', ':e ~/Org/journal.org<CR>', opts)
-keymap('n', '<leader>w<leader>r', ':e ~/Org/readings/readings.org<CR>', opts)
+-- LaTeX and Markdown
+keymap('n', '<leader>pa', 'vi`d:lua require("karu.utils").latex_into_unicode()<CR>i<C-R>+<C-c>kJxA ', opts)
+
+
 
 -- Harpoon
 keymap('n', '<leader>a', ":lua require('harpoon.mark').add_file()<CR>",{})
@@ -56,7 +52,7 @@ keymap('n', '<leader>f', "<cmd>lua vim.lsp.buf.formatting()<cr>", {})
 
 -- Menu
 keymap('n', '<C-n>', ":Lexplore<CR>", {})
-keymap('n', '<leader>t', ":TagbarToggle<CR>", {})
+keymap('n', '<C-t>', ":TagbarToggle<CR>", {})
 
 -- Git
 keymap('n', '<leader>gg', ":Git<CR>", {})

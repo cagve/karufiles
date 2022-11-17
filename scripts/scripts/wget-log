@@ -1,0 +1,11 @@
+--2022-11-13 13:33:00--  https://debian.poupon.dev/apt/debian/epoupon.gpg.key
+Resolving debian.poupon.dev (debian.poupon.dev)... 82.65.107.137
+Connecting to debian.poupon.dev (debian.poupon.dev)|82.65.107.137|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2452 (2.4K) [application/octet-stream]
+Saving to: ‘STDOUT’
+
+-                                             0%[                                                                                          ]       0  --.-KB/s               -                                             0%[                                                                                          ]       0  --.-KB/s    in 0s      
+
+
+Cannot write to ‘-’ (Success).

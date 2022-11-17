@@ -1,10 +1,7 @@
--- PACKER INSTALLED
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'anufrievroman/vim-angry-reviewer'
-    use 'junegunn/goyo.vim'
     use 'preservim/tagbar'	-- Tag bar to display info
-    -- use 'numirias/semshi'	-- Python tool
     use 'lukas-reineke/indent-blankline.nvim'
     use 'ThePrimeagen/harpoon' -- Just love
     use 'hrsh7th/cmp-buffer' -- cmp with buffer info
@@ -14,8 +11,12 @@ return require('packer').startup(function()
     use 'saadparwaiz1/cmp_luasnip' -- cmp Snippets
     use 'hrsh7th/nvim-cmp' -- cmp
     use 'kyazdani42/nvim-web-devicons' -- icons
-    use 'lervag/vimtex' -- Latex Stuff -> Migrate to not use vimtex
-    use 'morhetz/gruvbox' -- Theme
+    
+    -- LATEX
+    use 'lervag/vimtex' -- 
+    use 'KeitaNakamura/tex-conceal.vim'
+
+
     use 'neovim/nvim-lspconfig' -- Config lsp
     use 'nvim-lua/plenary.nvim' 
     use 'nvim-lua/popup.nvim'
@@ -31,10 +32,29 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs' -- Close pairs
     use "nvim-telescope/telescope-file-browser.nvim" 
 
+    use 'lewis6991/spellsitter.nvim' -- Correct spelling in latex. COnfig in treesitter.lua
+    use 'inkarkat/vim-SpellCheck'
+    use 'inkarkat/vim-ingo-library'
+    use 'subnut/nvim-ghost.nvim'
+
+    use 'vimwiki/vimwiki'
+    -- use 'preservim/vim-markdown'
+    -- use 'preservim/vim-markdown'
+
+    -- THEMES
+    use 'morhetz/gruvbox'           -- NORMAL FOR LATEX
+    use 'luisiacc/gruvbox-baby'     -- REALLY GOOD
+    use 'tiagovla/tokyodark.nvim'
+    use 'sainnhe/gruvbox-material' -- SOFT But working with vimwiki
+    use 'rafamadriz/neon'           -- NOT BAD
+    use {'RishabhRD/gruvy', require = {'rktjmp/lush.nvim'}} -- NOT BAD
+    use 'mhartington/oceanic-next' -- NOT BAD
+
     -- ORGMODE
-    use {'akinsho/org-bullets.nvim', config = function()
-        require('org-bullets').setup()
-    end}
-    use 'nvim-orgmode/orgmode'
+    -- use {'akinsho/org-bullets.nvim', config = function()
+    --     require('org-bullets').setup()
+    -- end}
+    -- use 'nvim-orgmode/orgmode'
+    
 end)
 

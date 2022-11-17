@@ -4,7 +4,9 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 
 # PATH Variables
+export JAVA_HOME=/usr/lib/jvm/jdk-14
 export PATH=$PATH:/home/karu/scripts
+export PATH=$PATH:$JAVA_HOME/bin
 export PATH=$PATH:/home/karu/.local/bin
 export PATH=$PATH:/home/karu/.cargo/bin
 export PATH=$PATH:/home/karu/lua-language-server/bin/

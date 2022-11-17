@@ -1,0 +1,34 @@
+#!/bin/bash
+OKULAR_BOOKMARKS_FILE_XML=$HOME/.local/share/okular/bookmarks.xml
+OKULAR_BOOKMARKS_FILE=$HOME/.local/share/okular/bookmarks
+
+SAVEIFS=$IFS   # Save current IFS (Internal Field Separator)
+IFS=$'\n'      # Change IFS to newline char
+HREF=($(xmllint --xpath "//bookmark/@href" $OKULAR_BOOKMARKS_FILE_XML))
+TITLES_ARRAY=($(xmllint --xpath "//bookmark/title/text()" $OKULAR_BOOKMARKS_FILE_XML))
+PDF_ARRAY=($(xmllint --xpath "//folder/title/text()" $OKULAR_BOOKMARKS_FILE_XML))
+MAX=0
+
+for (( i=0; i<${#TITLES_ARRAY[@]}; i++)) do
+    FILE=$(echo ${HREF[$i]}| awk -F ':' '{print $2}' | awk -F ';' '{print $1}' | sed 's/%20/_/g;s/_/ /g;s/-/: /g')
+    FILE_PDF=$(basename -s .pdf $FILE)
+    SPACES=`expr 40 - ${#TITLES_ARRAY[$i]}`
+    PROMPT=$(printf $i' | '${TITLES_ARRAY[$i]}' %'$SPACES's | '$FILE_PDF)
+    args+=("$PROMPT")
+done
+
+SELECTION=$(printf '%s\n' "${args[@]}" | rofi -dmenu )
+INDEX=$(echo $SELECTION | awk -F "|" '{print $1}')
+TITLE=$(echo $SELECTION | awk -F "|" '{print $2}' | sed 's/[ \t]*$//')
+FILE=$(echo ${HREF[$INDEX]}| awk -F ':' '{print $2}' | awk -F ';' '{print $1}')
+
+if [ -z "$SELECTION" ]
+then
+    dunstify -t 3000 "Not bookmark selected"
+else
+    dunstify -t 3000 "Openning $TITLE bookmark "
+    okular "file:"$FILE
+fi
+IFS=$SAVEIFS
+
+

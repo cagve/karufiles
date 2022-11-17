@@ -74,20 +74,6 @@ local snippets = {
 	s({trig='"'},  fmt("``{}'' {}", { i(1), i(2)})),
 
 	-- MATH MODE
-	s(
-		{ trig = "([a-zA-Z])(%d)", regTrig = true },
-		f(function(_, snip)
-			return snip.captures[1] .."_".. snip.captures[2]
-		end, {}),
-		{condition=tex.is_math}
-	),
-	s(
-		{ trig = "([a-zA-Z])(%d+)", regTrig = true },
-		f(function(_, snip)
-			return snip.captures[1] .."_{".. snip.captures[2].."}"
-		end, {}),
-		{condition=tex.is_math}
-	),
 	s({trig="<>"}, fmt("\\langle {} \\rangle {}", {i(1), i(2)}),{condition = tex.is_math}),
 	s({trig="{}"}, fmt("\\{{{}\\}} {}", {i(1), i(2)}), {condition = tex.is_math}),
 	s({trig="text"}, fmt("\\text{{{}}} {}", {i(1), i(2)}), {condition = tex.is_math}),
@@ -289,6 +275,20 @@ local snippets = {
 }
 
 local autosnippets = {
+	s(
+		{ trig = "([a-zA-Z])(%d)", regTrig = true },
+		f(function(_, snip)
+			return snip.captures[1] .."_".. snip.captures[2]
+		end, {}),
+		{condition=tex.is_math}
+	),
+	s(
+		{ trig = "([a-zA-Z])(%d+)", regTrig = true },
+		f(function(_, snip)
+			return snip.captures[1] .."_{".. snip.captures[2].."}"
+		end, {}),
+		{condition=tex.is_math}
+	),
 
 -- 	-- EPISTEMIC LOGIC
 -- 	s(

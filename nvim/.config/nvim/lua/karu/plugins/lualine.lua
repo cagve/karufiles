@@ -21,6 +21,6 @@ require('lualine').setup {
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {compile,'progress'},
     lualine_z = {'location'}
-  },
+  }
 }
 

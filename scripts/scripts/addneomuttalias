@@ -1,0 +1,16 @@
+#!/bin/bash
+neomutt_folder=$HOME/.config/neomutt/
+alias_file=$neomutt_folder/alias
+
+input="burrieza@uma.es"
+mail_line=$(grep -F $input $alias_file)
+
+if [[ -z $mail_line ]]; then
+    echo "NO EXISTE"
+else
+    alias=$(echo $mail_line | awk -F ' ' '{print $2}')
+    name=$(echo $mail_line | awk -F ' ' '{print $3" "$4}')
+    mail=$(echo $mail_line | awk -F ' ' '{print $5}' |  cut -d "<" -f2 | cut -d ">" -f1)
+    dunstify -t 3000 "Mail already exists." "\nName: $name \nAlias: $alias \nMail: $mail"
+fi
+

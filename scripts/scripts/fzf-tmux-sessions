@@ -1,0 +1,8 @@
+#!/bin/bash
+
+selected=$(tmux list-sessions | fzf)
+selected_name=$(echo $selected | awk -F ':' '{print $1}')
+tmux_running=$(pgrep tmux)
+
+tmux switch-client -t $selected_name
+
