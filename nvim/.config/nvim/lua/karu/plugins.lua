@@ -1,5 +1,6 @@
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
+    use 'christoomey/vim-tmux-navigator'
     use 'anufrievroman/vim-angry-reviewer'
     use 'preservim/tagbar'	-- Tag bar to display info
     use 'lukas-reineke/indent-blankline.nvim'
@@ -11,6 +12,7 @@ return require('packer').startup(function()
     use 'saadparwaiz1/cmp_luasnip' -- cmp Snippets
     use 'hrsh7th/nvim-cmp' -- cmp
     use 'kyazdani42/nvim-web-devicons' -- icons
+    use 'mfussenegger/nvim-jdtls'
     
     -- LATEX
     use 'lervag/vimtex' -- 
@@ -38,8 +40,6 @@ return require('packer').startup(function()
     use 'subnut/nvim-ghost.nvim'
 
     use 'vimwiki/vimwiki'
-    -- use 'preservim/vim-markdown'
-    -- use 'preservim/vim-markdown'
 
     -- THEMES
     use 'morhetz/gruvbox'           -- NORMAL FOR LATEX
@@ -50,11 +50,5 @@ return require('packer').startup(function()
     use {'RishabhRD/gruvy', require = {'rktjmp/lush.nvim'}} -- NOT BAD
     use 'mhartington/oceanic-next' -- NOT BAD
 
-    -- ORGMODE
-    -- use {'akinsho/org-bullets.nvim', config = function()
-    --     require('org-bullets').setup()
-    -- end}
-    -- use 'nvim-orgmode/orgmode'
-    
 end)
 

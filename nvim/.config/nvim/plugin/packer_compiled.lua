@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/home/karu/.local/share/nvim/site/pack/packer/start/nvim-ghost.nvim",
     url = "https://github.com/subnut/nvim-ghost.nvim"
   },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "/home/karu/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
+    url = "https://github.com/mfussenegger/nvim-jdtls"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/karu/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -263,6 +268,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/karu/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-tmux-navigator"] = {
+    loaded = true,
+    path = "/home/karu/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
   },
   vimtex = {
     loaded = true,

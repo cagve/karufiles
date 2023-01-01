@@ -1,0 +1,6 @@
+#!/bin/bash
+xrandr --newmode  "2096x1200_60.00"  211.04  2096 2240 2464 2832  1200 1201 1204 1242  -HSync +Vsync
+xrandr --addmode VIRTUAL1  2096x1200_60.00
+xrandr --output VIRTUAL1 --mode 2096x1200_60.00
+xrandr
+
