@@ -25,6 +25,7 @@ local function toggle_qf()
 end
 
 vim.keymap.set('n', '<leader>co', toggle_qf, opts)
+vim.keymap.set('n', '<leader>ct', require('telescope.builtin').quickfix, opts)
 vim.keymap.set('n', '<leader>cj', ":cnext<CR>", opts)
 vim.keymap.set('n', '<leader>ck', ":cprev<CR>", opts)
 vim.keymap.set('n', 'vg', function ()
