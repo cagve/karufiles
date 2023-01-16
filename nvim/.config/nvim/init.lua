@@ -1,4 +1,4 @@
 require("karu")
-vim.cmd('source ~/.config/nvim/config.vim')
+-- Hello, how is you?
 
 

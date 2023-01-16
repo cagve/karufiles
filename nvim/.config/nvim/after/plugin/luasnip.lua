@@ -7,12 +7,9 @@ require("luasnip").config.set_config({ -- Setting LuaSnip config
 
 -- LUA SNIP
 vim.keymap.set("i", "<c-k>", function ()
-    if ls.jumpable(1) then
-        ls.jump(1)
-    end
-    --if ls.expand_or_jumpable() then
-      --  ls.expand_or_jump()
-   -- end
+    if ls.expand_or_jumpable() then
+       ls.expand_or_jump()
+   end
 end)
 
 vim.keymap.set("i", "<c-j>", function ()

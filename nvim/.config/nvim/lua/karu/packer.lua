@@ -2,11 +2,13 @@
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 	use 'folke/tokyonight.nvim'
 	use 'nvim-treesitter/playground'
 	use 'nvim-lua/plenary.nvim'
 	use 'ThePrimeagen/harpoon'
+	use  "alexghergh/nvim-tmux-navigation"
 
 	-- TELESCOPE
 	use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { { 'nvim-lua/plenary.nvim' } } }
@@ -41,5 +43,9 @@ return require('packer').startup(function(use)
 
 	-- LaTeX
 	use 'lervag/vimtex'
-	use 'jbyuki/nabla.nvim'
+	-- use 'rhysd/vim-grammarous'
+	use 'peterbjorgensen/sved'
+	use 'dpelle/vim-LanguageTool'
+
+
 end)

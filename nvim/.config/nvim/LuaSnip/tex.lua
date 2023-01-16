@@ -62,56 +62,63 @@ local snippet = {
 		i(1),
 		t" \\right) ",
 		i(2)
-	}, {condition=is_math()}),
+	}, {condition=is_math}),
 	s({trig="br", name="brackets {}"}, {
 		f(function () return redefined_command("\\lbrace") end),
 		t" ", i(1), t" ",
 		f(function () return redefined_command("\\rbrace") end),
 		t" ", i(2)
-	}, {condition=is_math()}),
+	}, {condition=is_math}),
 	s({trig="an", name="angles <>"}, {
 		f(function () return redefined_command("\\langle") end),
 		t" ", i(1), t" ",
 		f(function () return redefined_command("\\rangle") end),
 		t" ", i(2)
-	}, {condition=is_math()}),
-	s({trig="tt", name="Text in math mode"},
+	}, {condition=is_math}),
+	s({trig="text", name="Text in math mode"},
 		{t("\\text{ "),
 		i(1),
 		t(" } "),
 		i(2)
-	}, {condition=is_math()}),
+	}, {condition=is_math}),
 
-	s({trig="iff", name="Iff in math mode"}, t"\\text{ iff } ", {condition=is_math()});
-	s({trig="all", name="Forall in math mode"}, t"\\text{ for all }",{condition=is_math()}),
+	s({trig="tt", name="Text in math mode"},
+		{t("\\mathtt{"),
+		i(1),
+		t("} "),
+		i(2)
+	}, {condition=is_math}),
+
+	s({trig="iff", name="Iff in math mode"}, t"\\text{ iff } ", {condition=is_math});
+	s({trig="all", name="Forall in math mode"}, t"\\text{ for all }",{condition=is_math}),
 
 	s({trig="ex", name="∃"},
 		fmt("{} ", f(function () return redefined_command("\\exists\\:") end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="fa", name="∀"},
 		fmt("{} ", f(function () return redefined_command("\\forall\\:") end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="la", name="∧"},
 		fmt("{} ", f(function () return redefined_command("\\land") end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="lo", name=" ∨ "},
 		fmt("{} ", f(function () return redefined_command("\\lor")end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="lt", name="→"},
 		fmt("{} ", f(function () return redefined_command("\\to")end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="le", name="↔"},
 		fmt("{} ", f(function () return redefined_command("\\leftrightarrow")end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="ln", name="¬"},
 		fmt("{} ", f(function () return redefined_command("\\lnot")end)),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 	s({trig="sb", name="⊆"},
 		fmt("{} {}", {c(1,{
@@ -119,9 +126,35 @@ local snippet = {
 			f(function () return redefined_command("\\subset")end)}),
 			i(2)}
 		),
-		{condition=is_math()}
+		{condition=is_math}
 	),
 }
 
-return snippet
+local autosnippet = {
+	-- MATH FONT
+	s({trig="(%a)cc", regTrig = true }, {
+		f(function(_, snip)
+				return redefined_command("\\mathcal{"..snip.captures[1].."}")
+		end, {}),
+    }, {condition = is_math}),
+	s({trig="(%a)bb", regTrig = true }, {
+		f(function(_, snip)
+				return redefined_command("\\mathbf{"..snip.captures[1].."}")
+		end, {}),
+    }, {condition = is_math}),
+	s({trig="(%a)ff", regTrig = true }, {
+		f(function(_, snip)
+				return redefined_command("\\mathfrak{"..snip.captures[1].."}")
+		end, {}),
+    }, {condition = is_math}),
+	s({trig="(%a)sf", regTrig = true }, {
+		f(function(_, snip)
+				return redefined_command("\\mathfrak{"..snip.captures[1].."}")
+		end, {}),
+    }, {condition = is_math}),
+}
+
+
+
+return snippet, autosnippet
 
