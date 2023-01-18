@@ -17,6 +17,9 @@ return require('packer').startup(function(use)
 	-- LSP
 	use { 'neovim/nvim-lspconfig' }
 
+	-- JAVA 
+	use 'mfussenegger/nvim-jdtls'
+
 	-- Autocompletion
 	use { 'hrsh7th/nvim-cmp' }
 	use { 'hrsh7th/cmp-buffer' }
@@ -46,6 +49,7 @@ return require('packer').startup(function(use)
 	-- use 'rhysd/vim-grammarous'
 	use 'peterbjorgensen/sved'
 	use 'dpelle/vim-LanguageTool'
+	use 'junegunn/goyo.vim'
 
 
 end)
