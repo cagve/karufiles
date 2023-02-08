@@ -10,3 +10,4 @@ hi VimwikiList guifg=#EA6962
 hi VimwikiLink guifg=#7daea3
 hi VimwikiLinkT guifg=#7daea3
 
+

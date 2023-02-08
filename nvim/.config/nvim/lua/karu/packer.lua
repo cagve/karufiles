@@ -50,6 +50,5 @@ return require('packer').startup(function(use)
 	use 'peterbjorgensen/sved'
 	use 'dpelle/vim-LanguageTool'
 	use 'junegunn/goyo.vim'
-
-
+	
 end)

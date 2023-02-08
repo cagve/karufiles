@@ -14,6 +14,8 @@ vim.keymap.set('n', '<leader>tt', ":e $HOME/vimwiki/TODO.md", opts)
 vim.keymap.set('v', 'J'," :m '>+1<CR>gv=gv",opts)
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set('v', '<C-r>', "hy:%s/<C-r>h//gc<left><left><left>", opts)
+vim.keymap.set('n', '<leader>pp', ":e ~/Phd/Database/Notes/index.md<CR>", opts)
+
 
 
 -- Quickfix list
