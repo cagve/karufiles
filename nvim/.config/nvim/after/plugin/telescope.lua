@@ -4,10 +4,8 @@ local action_state = require "telescope.actions.state"
 local conf = require("telescope.config").values
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
-
-
-
 local builtin = require('telescope.builtin')
+
 local function math_symbols()
 	builtin.symbols({
 		sources = { 'math' },
@@ -21,6 +19,33 @@ local function math_symbols()
 			return true
 		end,
 	})
+end
+
+local function phd_dirs	()
+	local path = vim.fn.expand('%')
+	local command = "fd . -t d -d 2"
+
+	local lines = {}
+	local file = io.popen(command)
+	for line in file:lines() do
+		table.insert(lines, line)
+	end
+    file:close()
+
+	local picker = pickers.new({}, {
+		prompt_title = "Phd",
+		finder = finders.new_table{ results = lines},
+		sorter = conf.generic_sorter(opts),
+		attach_mappings = function(prompt_bufnr)
+			actions.select_default:replace(function()
+				actions.close(prompt_bufnr)
+				local selection = action_state.get_selected_entry()
+				path = "."..path.."/"..selection[1]
+				vim.cmd('cd '..path)
+			end)
+			return true
+		end,
+	}):find()
 end
 
 local function mail_adress(opts)
@@ -56,6 +81,7 @@ local function mail_adress(opts)
 			{ remaining = true },
 		},
 	})
+
 	local make_display = function(entry)
 		return displayer({
 			entry.name,
@@ -101,7 +127,8 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>rg', builtin.grep_string, {})
 
+-- Custom
 vim.keymap.set('n', '<leader>mm', math_symbols, {})
 vim.keymap.set('n', '<leader>ab', mail_adress, {})
+vim.keymap.set('n', '<leader>ph', phd_dirs, {})
 
--- vim.keymap.set('n', '<leader>ag', mail_adress("~/.config/neomutt/address_book"), {})

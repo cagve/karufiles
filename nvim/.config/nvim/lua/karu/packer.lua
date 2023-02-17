@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'ThePrimeagen/harpoon'
 	use  "alexghergh/nvim-tmux-navigation"
+	use 'nvim-lualine/lualine.nvim'
 
 	-- TELESCOPE
 	use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { { 'nvim-lua/plenary.nvim' } } }

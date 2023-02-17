@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PHD_PATH=$HOME/Phd/Database/Papers/
+PDF=$(ls $PHD_PATH | fzf )
+xdg-open $PHD_PATH/$PDF
+
