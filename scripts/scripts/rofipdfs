@@ -1,3 +1,11 @@
 #!/bin/bash
 PDF_FOLDER=$HOME/Phd/Database/Papers/
-ls $PDF_FOLDER | rofi -dmenu
+FILE=$(ls $PDF_FOLDER | rofi -theme-str "#window { width: 900;}" -dmenu -sort -sorting-method fzf -i -p "Choose to open")
+
+OPEN=$PDF_FOLDER$FILE
+
+if [[ $FILE!="" ]]; then
+	notify-send -t 3000 "Opening pdf" "$FILE"
+	okular $OPEN
+fi
+

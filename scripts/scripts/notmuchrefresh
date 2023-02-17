@@ -1,3 +1,12 @@
 #/bin/bash
-/usr/bin/notmuch new
-/usr/bin/notmuch tag +IRIT -- from: "*irit.fr"
+notmuch new
+
+# retag all "new" messages "inbox" and "unread"
+notmuch tag +all +inbox +unread -new -- tag:new
+
+# tag all messages from "me" as sent and remove tags inbox and unread
+notmuch tag -new -all -unread -inbox +sent -- from:carlos.aguilera-ventura@irit.fr
+
+notmuch tag -inbox +folli -- to:folli@folli.info
+notmuch tag -inbox +lilac -- to:lilac@irit.fr or to:lilac-doctorants@irit.fr
+

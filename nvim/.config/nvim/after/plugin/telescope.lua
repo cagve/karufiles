@@ -41,6 +41,8 @@ local function phd_dirs	()
 				actions.close(prompt_bufnr)
 				local selection = action_state.get_selected_entry()
 				path = "."..path.."/"..selection[1]
+				print("..")
+				print("Openning "..selection[1])
 				vim.cmd('cd '..path)
 			end)
 			return true
