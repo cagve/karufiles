@@ -1,13 +1,13 @@
 local function toogle_quickfix()
 	local state = vim.api.nvim_get_var('vimtex_quickfix_enabled')
-	if state then
+	if state==1 then
 		vim.api.nvim_set_var('vimtex_quickfix_enabled', 0)
 		vim.cmd "VimtexReload"
 		print("Quicfix disabled")
 	else
 		vim.api.nvim_set_var('vimtex_quickfix_enabled', 1)
 		vim.cmd "VimtexReload"
-		print("Quicfix disabled")
+		print("Quicfix enabled")
 	end
 end
 

@@ -1,3 +1,5 @@
+local home = os.getenv("HOME")
+
 -- COLORS
 function SetColor(color)
 	color = color or "tokyonight"
@@ -16,7 +18,7 @@ vim.opt.hlsearch=false
 vim.opt.smartindent=true
 vim.opt.backup=false
 vim.opt.undofile=true
-vim.opt.undodir="/home/caguiler/.config/nvim/undodir/"
+vim.opt.undodir=home.."/.config/nvim/undodir/"
 vim.opt.incsearch=true
 vim.opt.scrolloff=8
 vim.opt.compatible=false
