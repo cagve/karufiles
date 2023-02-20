@@ -1,0 +1,7 @@
+#!/bin/bash
+# gtf 2000 1200 50
+# 2000x1200 @ 60.00 Hz (GTF) hsync: 74.52 kHz; pclk: 201.50 MHz Modeline "2000x1200_60.00"  201.50  2000 2136 2352 2704  1200 1201 1204 1242  -HSync +Vsync
+
+xrandr --newmode "2000x1200_60.00" 201.50  2000 2136 2352 2704  1200 1201 1204 1242  -HSync +Vsync
+xrandr --addmode VIRTUAL1 2000x1200_60.00
+xrandr --output VIRTUAL1 --mode 2000x1200_60.00
