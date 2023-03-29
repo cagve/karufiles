@@ -3,12 +3,10 @@ local home = os.getenv("HOME")
 -- COLORS
 function SetColor(color)
 	color = color or "tokyonight"
-	if color == "tokyonight" then
-		vim.cmd.colorscheme(color)
-	end
+	vim.cmd.colorscheme(color)
 end
 
-SetColor()
+SetColor("gruvbox")
 vim.opt.tabstop=4
 vim.opt.softtabstop=4
 vim.opt.shiftwidth=4

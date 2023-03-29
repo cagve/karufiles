@@ -3,8 +3,11 @@
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
-	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+	-- Themes
 	use 'folke/tokyonight.nvim'
+	use "ellisonleao/gruvbox.nvim"
+
+	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 	use 'nvim-treesitter/playground'
 	use 'nvim-lua/plenary.nvim'
 	use 'ThePrimeagen/harpoon'
@@ -47,9 +50,4 @@ return require('packer').startup(function(use)
 
 	-- LaTeX
 	use 'lervag/vimtex'
-	-- use 'rhysd/vim-grammarous'
-	use 'peterbjorgensen/sved'
-	use 'dpelle/vim-LanguageTool'
-	use 'junegunn/goyo.vim'
-	
 end)
