@@ -1,0 +1,4 @@
+#!/bin/bash
+DIR=$HOME/Phd
+SESSION=$(find $DIR -type d -print | fzf)
+tmux neww -c $SESSION -n $(basename $SESSION)
