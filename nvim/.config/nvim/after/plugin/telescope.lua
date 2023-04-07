@@ -15,6 +15,7 @@ local function math_symbols()
 				local selection = action_state.get_selected_entry()
 				local symbol = selection.display:match("%S+")
 				os.execute("echo -n " .. symbol .. " | xclip -selection clipboard")
+				vim.api.nvim_put({symbol}, "", true, true)
 			end)
 			return true
 		end,

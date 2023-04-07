@@ -1,4 +1,4 @@
 from subprocess import check_output
 
-def get_pass(account): 
-    return check_output("pass " + account, shell=True).splitlines()[0]
+def get_pass(): 
+    return check_output("gpg -dq ~/.offlineimap.gpg", shell=True).rstrip(b"\n")
