@@ -50,4 +50,5 @@ return require('packer').startup(function(use)
 
 	-- LaTeX
 	use 'lervag/vimtex'
+	use 'anufrievroman/vim-angry-reviewer'
 end)

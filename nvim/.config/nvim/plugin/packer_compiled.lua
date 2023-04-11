@@ -195,6 +195,11 @@ _G.packer_plugins = {
     path = "/home/caguiler/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
+  ["vim-angry-reviewer"] = {
+    loaded = true,
+    path = "/home/caguiler/.local/share/nvim/site/pack/packer/start/vim-angry-reviewer",
+    url = "https://github.com/anufrievroman/vim-angry-reviewer"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/caguiler/.local/share/nvim/site/pack/packer/start/vim-fugitive",
