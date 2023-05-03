@@ -49,8 +49,17 @@ require'lspconfig'.rust_analyzer.setup{
 	capabilities = capabilities
 }
 
--- require'lspconfig'.ltex.setup {
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	cmd = {"/home/caguiler/Downloads/g/ltex-ls-15.2.0/bin/ltex-ls"}
--- }
+require'lspconfig'.tsserver.setup {
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
+require'lspconfig'.jdtls.setup{
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { 'jdtls' },
+	root_dir = function(fname)
+		return require'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
+	end
+}
+

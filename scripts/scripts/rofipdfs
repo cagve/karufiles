@@ -4,8 +4,10 @@ FILE=$(ls $PDF_FOLDER | rofi -theme-str "#window { width: 900;}" -dmenu -sort -s
 
 OPEN=$PDF_FOLDER$FILE
 
-if [[ $FILE!="" ]]; then
+if [[ $FILE != "" ]]; then
 	notify-send -t 3000 "Opening pdf" "$FILE"
 	okular $OPEN
+else
+	notify-send -t 3000 "Not filed selected"
 fi
 

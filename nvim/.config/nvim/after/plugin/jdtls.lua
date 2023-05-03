@@ -1,0 +1,6 @@
+-- local config = {
+--     cmd = {'/home/caguiler/.local/bin/jdtls'},
+--     root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw', 'pom.xml'}, { upward = true })[1]),
+-- 	-- root_dir = root_pattern(".git", "pom.xml", "build.xml")
+-- }
+-- require('jdtls').start_or_attach(config)

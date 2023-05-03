@@ -9,6 +9,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local t = ls.text_node
 
 local snippet = {
+	s({trig="im", name="Inline math mode"}, fmt("$ {} $ {}", {i(1), i(2)})),
 	s({trig="diary"}, fmt([[
 	# {}
 
@@ -19,6 +20,7 @@ local snippet = {
 	## Diary
 	]], { f(function () return os.date("(%a) %d/%b/%Y") end)})),
 }
+
 
 
 return snippet

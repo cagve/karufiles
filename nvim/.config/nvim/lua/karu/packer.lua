@@ -21,8 +21,6 @@ return require('packer').startup(function(use)
 	-- LSP
 	use { 'neovim/nvim-lspconfig' }
 
-	-- JAVA 
-	use 'mfussenegger/nvim-jdtls'
 
 	-- Autocompletion
 	use { 'hrsh7th/nvim-cmp' }
