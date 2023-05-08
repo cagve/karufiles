@@ -43,7 +43,8 @@ return require('packer').startup(function(use)
 		end
 	}
 	use 'tpope/vim-surround'	-- Surround
-	use 'tpope/vim-fugitive'	-- Surround
+	use 'tpope/vim-fugitive'	-- Git
+	use 'kdheepak/lazygit.nvim'
 	use 'windwp/nvim-autopairs' -- Close pairs
 
 	-- LaTeX

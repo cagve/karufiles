@@ -33,6 +33,18 @@ local snippet = {
 	s({trig="sub", name="Subsection"}, fmt("\\subsection{{{}}}\n{}", { i(1), i(2) })),
 	s({trig="ssub", name="Subsubsection"}, fmt("\\subsubsection{{{}}}\n{}", { i(1), i(2) })),
 	s({trig='sal', name="Salto"}, t("\\salto ")),
+	s({trig="tikz"}, fmt( [[ 
+		\begin{{figure}}[ht!]
+			\centering
+			\begin{{tikzpicture}}
+				{}
+			\end{{tikzpicture}}
+			\caption{{{}}}
+			\label{{{}}}
+		\end{{figure}}
+	]], { i(0), i(1), f(function (args) return "fig:"..args[1][1]:gsub(" ","_") end, {1}) }
+		)
+	),
 	s({trig="beg"}, fmt( [[ 
 		\begin{{{}}}
 			{}
@@ -75,7 +87,7 @@ local snippet = {
 		f(function () return redefined_command("\\rangle") end),
 		t" ", i(2)
 	}, {condition=is_math}),
-	s({trig="text", name="Text in math mode"},
+	s({trig="txt", name="Text in math mode"},
 		{t("\\text{ "),
 		i(1),
 		t(" } "),
