@@ -6,7 +6,7 @@ OPEN=$PDF_FOLDER$FILE
 
 if [[ $FILE != "" ]]; then
 	notify-send -t 3000 "Opening pdf" "$FILE"
-	okular $OPEN
+	okular "$OPEN"
 else
 	notify-send -t 3000 "Not filed selected"
 fi

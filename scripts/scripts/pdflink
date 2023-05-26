@@ -1,0 +1,20 @@
+#/bin/bash
+if [ $# -ne 2 ]; then
+    >&2 echo "Not enough arguments provided"
+    exit 1
+fi
+
+clear
+echo "Do you want to create the following document?" 
+echo "original file: $1"
+echo "n page link: $2"
+read -p "[Y/n] > " response
+clear
+
+if [ $response = "y" ] || [ $response = "Y" ]; then
+	python3 $HOME/scripts/create_link.py $1 $2
+else
+	echo "Not creating link"
+fi
+
+

@@ -76,10 +76,18 @@ local snippet = {
 		i(2)
 	}, {condition=is_math}),
 	s({trig="br", name="brackets {}"}, {
-		f(function () return redefined_command("\\lbrace") end),
-		t" ", i(1), t" ",
-		f(function () return redefined_command("\\rbrace") end),
-		t" ", i(2)
+		c(1, {
+			{f(function () return redefined_command("\\lbrace") end),
+			t" ", i(1), t" ",
+			f(function () return redefined_command("\\rbrace") end),
+			t" ", i(2)},
+			{t"\\left",
+			f(function () return redefined_command("\\lbrace") end),
+			t" ", i(1), t" ",
+			t"\\right",
+			f(function () return redefined_command("\\rbrace") end),
+			t" ", i(2)},
+		})
 	}, {condition=is_math}),
 	s({trig="an", name="angles <>"}, {
 		f(function () return redefined_command("\\langle") end),
