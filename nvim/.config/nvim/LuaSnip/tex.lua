@@ -24,6 +24,7 @@ local function is_math()
 end
 
 local snippet = {
+	s({trig='"', name="Quotes"}, fmt("``{}'' {}", {i(1), i(2)})),
 	s({trig="im", name="Inline math mode"}, fmt("$ {} $ {}", {i(1), i(2)})),
 	s({trig="dm", name="Display math mode"}, fmt("$$ {} $$ {}", {i(1), i(2)})),
 	s({trig="bf", name="Bold font"}, {t"\\textbf{", i(1), t"}"}),

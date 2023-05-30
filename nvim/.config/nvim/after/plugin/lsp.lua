@@ -54,6 +54,12 @@ require'lspconfig'.tsserver.setup {
 	capabilities = capabilities
 }
 
+require'lspconfig'.grammarly.setup{
+	filetypes = {"tex"},
+	on_attach = on_attach,
+	capabilities = capabilities
+}
+
 require'lspconfig'.jdtls.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
